@@ -15,10 +15,15 @@
   "author": "Thalyson Alexandre Rodrigues de Sousa <thalysonrodrigues.dev@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.9.1"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.1",
+    "nodemailer": "^6.4.2",
+    "nodemailer-express-handlebars": "^3.1.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
