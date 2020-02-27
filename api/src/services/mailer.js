@@ -1,6 +1,6 @@
-const nodemailer = require('nodemailer');
-const hbs = require('nodemailer-express-handlebars');
-const path = require('path');
+import nodemailer from 'nodemailer';
+import hbs from 'nodemailer-express-handlebars';
+import path from 'path';
 
 const {
   TM_MAIL_HOST,
@@ -29,4 +29,4 @@ transport.use('compile', hbs({
   extName: '.html'
 }));
 
-module.exports = transport;
+export default transport;

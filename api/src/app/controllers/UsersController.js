@@ -1,9 +1,9 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const mailer = require('../../services/mailer');
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+import mailer from '../../services/mailer';
 
-const User = require('../models/User');
+import User from '../models/User';
 
 const generateToken = (params = {}) => {
   return jwt.sign(params, process.env.TM_SECRET, {
@@ -11,7 +11,7 @@ const generateToken = (params = {}) => {
   });
 }
 
-module.exports = {
+export default {
   async auth (req, res) {
     const { email, password } = req.body;
 
