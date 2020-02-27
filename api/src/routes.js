@@ -18,4 +18,7 @@ router.post('/auth/authenticate', UsersController.auth);
 router.post('/auth/forgot_password', UsersController.forgotPassword);
 router.post('/auth/reset_password', UsersController.resetPassword);
 
+router.get('/users', authMiddleware, UsersController.index);
+router.get('/users/:id', authMiddleware, UsersController.show);
+
 export default router;
