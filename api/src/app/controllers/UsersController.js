@@ -12,6 +12,24 @@ const generateToken = (params = {}) => {
 }
 
 export default {
+  async index (req, res) {
+    try {
+      const { page = 1 } = req.query;
+      const users = await User.paginate({}, {
+        page,
+        limit: 10,
+        select: { _id: 1, name: 1 }
+      });
+
+      return res.status(200).json(users);
+    } catch (err) {
+      return res.status(500).json({
+        error: 500,
+        password: 'Error on list users.'
+      });
+    }
+  },
+
   async auth (req, res) {
     const { email, password } = req.body;
 
