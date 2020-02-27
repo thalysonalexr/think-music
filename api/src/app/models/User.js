@@ -1,4 +1,5 @@
 import { model, Schema } from 'mongoose';
+import paginate from 'mongoose-paginate';
 import bcrypt from 'bcryptjs';
 
 const UserSchema = new Schema({
@@ -46,5 +47,7 @@ UserSchema.pre('save', async function (next) {
   this.password = hash;
   next();
 });
+
+UserSchema.plugin(paginate);
 
 export default model('User', UserSchema);
