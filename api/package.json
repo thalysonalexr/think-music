@@ -2,10 +2,10 @@
   "name": "think-music-api",
   "version": "1.0.0",
   "description": "Web service to Think Music Project",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec sucrase-node src/index.js"
+    "start": "nodemon --exec sucrase-node src/server.js"
   },
   "keywords": [
     "Music",

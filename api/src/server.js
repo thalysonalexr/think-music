@@ -5,6 +5,9 @@ if ( ! process.env.NODE_ENV) {
 import './config';
 import './services/mongo';
 
+const port = process.env.PORT;
+const host = process.env.BASE_URL;
+
 import express from 'express';
 import cors from 'cors';
 import routes from './routes';
@@ -15,6 +18,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/v1', routes);
 
-app.listen(process.env.PORT, process.env.BASE_URL, () => {
+app.listen(port, host, () => {
   console.log(`[${process.env.NODE_ENV}] Running on http://${host}:${port}`);
 });
