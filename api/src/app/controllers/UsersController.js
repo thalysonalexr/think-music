@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import crypto from 'crypto';
+import crypto, { verify } from 'crypto';
 import mailer from '../../services/mailer';
 
 import User from '../models/User';
@@ -11,14 +11,25 @@ const generateToken = (params = {}) => {
   });
 }
 
+const isAdmin = async (_id) => {
+  const user = await User.findOne({_id, role: 'admin' });
+
+  if (user)
+    return user.role === 'admin';
+
+  return false;
+}
+
 export default {
   async index (req, res) {
+    const { page = 1 } = req.query;
+    const select = await isAdmin(req.userId) ? {}: { _id: 1, name: 1 }
+
     try {
-      const { page = 1 } = req.query;
       const users = await User.paginate({}, {
         page,
         limit: 10,
-        select: { _id: 1, name: 1 }
+        select
       });
 
       return res.status(200).json(users);
@@ -26,6 +37,99 @@ export default {
       return res.status(500).json({
         error: 500,
         password: 'Error on list users.'
+      });
+    }
+  },
+
+  async show (req, res) {
+    const { id } = req.params;
+
+    try {
+      const user = await User.findById(id);
+
+      if (req.userId === id || await isAdmin(req.userId)) {
+        return res.status(200).json({ user });
+      }
+
+      const { _id, name } = user;
+
+      return res.status(200).json({ 'user': { _id, name } });
+    } catch (err) {
+      console.log(err.message)
+      return res.status(500).json({
+        error: 500,
+        password: 'Error on show user.'
+      });
+    }
+  },
+
+  async update(req, res) {
+    const { id } = req.params;
+    const { name, email } = req.body;
+
+    if (req.userId === id || await isAdmin(req.userId)) {
+      try {
+        const user = await User.findByIdAndUpdate(id, {
+          name, email
+        }, { new: true });
+        
+        return res.status(200).json({ user });
+      } catch (err) {
+        return res.status(500).json({
+          error: 500,
+          message: 'Error on update user.'
+        });
+      }
+    }
+
+    return res.status(403).json({
+      error: 403,
+      message: 'You not have access this resource.'
+    });
+  },
+
+  async destroy(req, res) {
+    const { id } = req.params;
+
+    if (req.userId === id || await isAdmin(req.userId)) {
+      try {
+        const user = await User.findByIdAndRemove(id);
+
+        if (user)
+          return res.status(204).end();
+
+        return res.status(404).json({
+          error: 404,
+          message: 'User not found.'
+        });
+      } catch (err) {
+        return res.status(500).json({
+          error: 500,
+          message: 'Error on remove user.'
+        });
+      }
+    }
+
+    return res.status(403).json({
+      error: 403,
+      message: 'You not have access this resource.'
+    });
+  },
+
+  async disableUser (req, res) {
+    const { id } = req.params;
+    const { status } = req.query;
+
+    try {
+      const user = await User.findByIdAndUpdate(id, {
+        status
+      }, { new: true });
+
+      return res.status(200).json({ user });
+    } catch (err) {
+      return res.status(500).json({
+        error: 500,
+        message: 'Error on disable user.'
       });
     }
   },
@@ -74,7 +178,15 @@ export default {
         });
       }
 
-      const user = await User.create(req.body);
+      const { name, password } = req.body;
+      const role = (req.role && req.role === 'admin') ? 'admin': 'user';
+      
+      const user = await User.create({
+        name,
+        email,
+        password,
+        role
+      });
 
       user.password = undefined;
       
