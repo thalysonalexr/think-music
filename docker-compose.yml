@@ -18,6 +18,20 @@ services:
       - mongo
     links:
       - mongo
+    
+  postgres:
+    image: postgres
+    container_name: think-music_postgres
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DATA=/data/postgres
+    volumes:
+      - ./data/db/postgres:/data/postgres
+    ports:
+      - "${POSTGRES_PORT}:5432"
 
   mongo:
     image: mongo
