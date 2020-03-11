@@ -5,7 +5,7 @@ module.exports = {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     port: 5433,
-    database: 'blog',
+    database: 'thinkmusic',
     define: {
       timestamps: true,
       underscored: true
@@ -17,7 +17,7 @@ module.exports = {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     port: process.env.DB_PORT,
-    database: 'blog',
+    database: 'thinkmusic',
     define: {
       timestamps: true,
       underscored: true
