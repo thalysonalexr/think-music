@@ -9,7 +9,7 @@ class Category extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Musics, { foreignKey: 'category_id', as: 'musics_category' });
+    this.hasMany(models.Music, { foreignKey: 'category_id', as: 'musics_category' });
   }
 }
 
