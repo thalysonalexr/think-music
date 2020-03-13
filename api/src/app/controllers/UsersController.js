@@ -215,7 +215,7 @@ export default {
     }
 
     try {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ where: { email } });
 
       if ( ! user) {
         return res.status(404).json({
@@ -229,12 +229,10 @@ export default {
       const now = new Date();
       now.setHours(now.getHours() + 1);
 
-      await User.findByIdAndUpdate(user._id, {
-        '$set': {
-          passwordResetToken: token,
-          passwordResetExpires: now
-        }
-      });
+      user.passwordResetToken = token;
+      user.passwordResetExpires = now;
+
+      await user.save();
 
       mailer.sendMail({
         to: email,
