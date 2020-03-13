@@ -25,15 +25,18 @@ const isAdmin = async (id) => {
 
 export default {
   async index (req, res) {
-    const { page = 1 } = req.query;
-    const select = await isAdmin(req.userId) ? {}: { _id: 1, name: 1 }
+    const { page = 1, orderBy = 'id' } = req.query;
+    const attributes = await isAdmin(req.userId) ? null: ['id', 'name'];
+
+    const options = {
+      page,
+      attributes,
+      order: [[orderBy, 'ASC']],
+      paginate: 10,
+    };
 
     try {
-      const users = await User.paginate({}, {
-        page,
-        limit: 10,
-        select
-      });
+      const users = await User.paginate(options);
 
       return res.status(200).json(users);
     } catch (err) {
