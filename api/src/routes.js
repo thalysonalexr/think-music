@@ -68,6 +68,13 @@ router.put('/admin/musics/:id',
   MusicController.update
 );
 
+router.delete('/admin/musics/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  authorizationMiddleware,
+  MusicController.destroy
+);
+
 router.post('/admin/categories',
   authMiddleware,
   unprocessableMiddleware,

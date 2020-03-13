@@ -4,7 +4,7 @@ import Music from '../models/Music';
 import Category from '../models/Category';
 
 export default {
-  async index(req, res) {
+  async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
     
     const options = {
@@ -25,7 +25,7 @@ export default {
     }
   },
 
-  async show(req, res) {
+  async show (req, res) {
     const { id } = req.params;
 
     try {
@@ -47,7 +47,7 @@ export default {
     }
   },
 
-  async store(req, res) {
+  async store (req, res) {
     const { link, title, author, description, letter, category } = req.body;
 
     if (link === undefined ||
@@ -91,7 +91,7 @@ export default {
     }
   },
 
-  async update(req, res) {
+  async update (req, res) {
     const { id } = req.params;
     const { link, title, description, letter, author, category } = req.body;
 
@@ -142,6 +142,27 @@ export default {
       return res.status(500).json({
         error: 500,
         message: 'Error on update music.'
+      });
+    }
+  },
+
+  async destroy (req, res) {
+    const { id } = req.params;
+
+    try {
+      const music = await Music.destroy({ where: { id } });
+
+      if (music)
+        return res.status(204).end();
+
+      return res.status(404).json({
+        error: 404,
+        message: 'Music not found'
+      });
+    } catch (err) {
+      return res.status(500).json({
+        error: 500,
+        message: ''
       });
     }
   }

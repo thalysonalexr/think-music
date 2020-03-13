@@ -94,9 +94,15 @@ export default {
     const { id } = req.params;
 
     try {
-      await Category.destroy({ where: { id } });
+      const category = await Category.destroy({ where: { id } });
 
-      return res.status(204).end();
+      if (category)
+        return res.status(204).end();
+
+      return res.status(404).json({
+        error: 404,
+        message: 'Music not found'
+      });
     } catch(err) {
       if (err.name === 'SequelizeDatabaseError' && err.parent.code == 23502) {
         return res.status(409).json({
