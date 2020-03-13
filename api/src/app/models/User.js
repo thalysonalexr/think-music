@@ -30,7 +30,9 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.RevokedTokens, { foreignKey: 'user_id', as: 'tokens_user' });
+    this.hasMany(models.RevokedToken, { foreignKey: 'user_id', as: 'tokens_user' });
+    this.hasMany(models.Comment, { foreignKey: 'user_id', as: 'comments_user' });
+    this.hasMany(models.Like, { foreignKey: 'user_id', as: 'likes_user' });
   }
 }
 
