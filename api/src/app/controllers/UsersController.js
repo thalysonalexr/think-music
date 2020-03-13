@@ -96,7 +96,7 @@ export default {
 
     if (req.userId === id || await isAdmin(req.userId)) {
       try {
-        const user = await User.findByIdAndRemove(id);
+        const user = await User.destroy({ where: { id } });
 
         if (user)
           return res.status(204).end();
