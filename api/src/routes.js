@@ -2,7 +2,10 @@ import { Router } from 'express';
 import authMiddleware from './app/middlewares/auth';
 import authorizationMiddleware from './app/middlewares/authorization';
 import unprocessableMiddleware from './app/middlewares/unprocessable';
-import UsersController from './app/controllers/UsersController';
+import UserController from './app/controllers/UserController';
+import MusicController from './app/controllers/MusicController';
+import CategoryController from './app/controllers/CategoryController';
+import { logs } from './middlewares/accesslog';
 
 const router = Router();
 
@@ -15,47 +18,106 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/auth/register', UsersController.store);
-router.post('/auth/authenticate', UsersController.auth);
-router.post('/auth/forgot_password', UsersController.forgotPassword);
-router.post('/auth/reset_password', UsersController.resetPassword);
+router.post('/auth/register', UserController.store);
+router.post('/auth/authenticate', UserController.auth);
+router.post('/auth/forgot_password', UserController.forgotPassword);
+router.post('/auth/reset_password', UserController.resetPassword);
 
 router.get('/users',
   authMiddleware,
   unprocessableMiddleware,
-  UsersController.index
+  UserController.index
 );
 
 router.get('/users/:id',
   authMiddleware,
   unprocessableMiddleware,
-  UsersController.show
+  UserController.show
 );
 
 router.put('/users/:id',
   authMiddleware,
   unprocessableMiddleware,
-  UsersController.update
+  UserController.update
 );
 
 router.delete('/users/:id',
   authMiddleware,
   unprocessableMiddleware,
-  UsersController.destroy
+  UserController.destroy
 );
 
 router.post('/users/admin',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  UsersController.store
+  UserController.store
+);
+
+router.post('/admin/musics',
+  authMiddleware,
+  unprocessableMiddleware,
+  authorizationMiddleware,
+  MusicController.store
+);
+
+router.put('/admin/musics/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  authorizationMiddleware,
+  MusicController.update
+);
+
+router.post('/admin/categories',
+  authMiddleware,
+  unprocessableMiddleware,
+  authorizationMiddleware,
+  CategoryController.store
+);
+
+router.put('/admin/categories/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  authorizationMiddleware,
+  CategoryController.update
+);
+
+router.get('/admin/logs',
+  authMiddleware,
+  unprocessableMiddleware,
+  authorizationMiddleware,
+  logs
 );
 
 router.post('/users/:id/enable',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  UsersController.disableUser
+  UserController.disableUser
+);
+
+router.get('/musics',
+  authMiddleware,
+  unprocessableMiddleware,
+  MusicController.index
+);
+
+router.get('/musics/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  MusicController.show
+);
+
+router.get('/categories',
+  authMiddleware,
+  unprocessableMiddleware,
+  CategoryController.index
+);
+
+router.get('/categories/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  CategoryController.show
 );
 
 export default router;
