@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import sequelizePaginate from 'sequelize-paginate';
 
 class Interpretation extends Model {
   static init(sequelize) {
@@ -13,5 +14,7 @@ class Interpretation extends Model {
     this.hasMany(models.Comment, { foreignKey: 'interpretation_id', as: 'comments_interpretation' });
   }
 }
+
+sequelizePaginate.paginate(Interpretation);
 
 export default Interpretation;
