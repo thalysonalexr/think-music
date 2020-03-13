@@ -11,8 +11,10 @@ const generateToken = (params = {}) => {
   });
 }
 
-const isAdmin = async (_id) => {
-  const user = await User.findOne({_id, role: 'admin' });
+const isAdmin = async (id) => {
+  const user = await User.findOne({ where: {
+    id, role: 'admin'
+  } });
 
   if (user)
     return user.role === 'admin';
@@ -171,7 +173,7 @@ export default {
     const { email } = req.body;
 
     try {
-      if (await User.findOne({ email })) {
+      if (await User.findOne({ where: { email } })) {
         return res.status(409).json({
           error: 409,
           message: 'User already exists.'
@@ -190,10 +192,11 @@ export default {
 
       user.password = undefined;
       
-      const token = generateToken({ id: user._id });
+      const token = generateToken({ id: user.id });
 
       return res.status(201).json({ user, token });
     } catch (err) {
+      console.log(err)
       return res.status(400).json({
         error: 400,
         message: 'Bad Request.'
