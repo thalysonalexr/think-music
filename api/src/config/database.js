@@ -2,8 +2,8 @@ module.exports = {
   migrations: {
     dialect: 'postgres',
     host: 'localhost',
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    username: 'root',
+    password: 'root',
     port: 5433,
     database: 'thinkmusic',
     define: {
