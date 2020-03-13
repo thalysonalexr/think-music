@@ -4,7 +4,10 @@ class RevokedToken extends Model {
   static init(sequelize) {
     super.init({
       token: DataTypes.STRING(255),
-    }, { sequelize });
+    }, {
+      sequelize,
+      tableName: 'rovoked_tokens'
+    });
   }
 
   static associate(models) {

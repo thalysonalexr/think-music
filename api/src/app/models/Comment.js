@@ -4,7 +4,10 @@ class Comment extends Model {
   static init(sequelize) {
     super.init({
       comment: DataTypes.STRING(280),
-    }, { sequelize });
+    }, {
+      sequelize,
+      tableName: 'comments'
+    });
   }
 
   static associate(models) {

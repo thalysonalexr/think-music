@@ -6,7 +6,10 @@ class Category extends Model {
     super.init({
       title: DataTypes.STRING(45),
       description: DataTypes.STRING(255),
-    }, { sequelize });
+    }, {
+      sequelize,
+      tableName: 'categories'
+    });
   }
 
   static associate(models) {

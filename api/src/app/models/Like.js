@@ -5,7 +5,10 @@ class Like extends Model {
     super.init({
       like: DataTypes.BOOLEAN,
       dislike: DataTypes.BOOLEAN,
-    }, { sequelize });
+    }, {
+      sequelize,
+      tableName: 'likes'
+    });
   }
 
   static associate(models) {

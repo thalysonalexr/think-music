@@ -21,7 +21,8 @@ class User extends Model {
           user.password = await bcrypt.hash(user.password, 10);
         },
       },
-      sequelize
+      sequelize,
+      tableName: 'users'
     });
   }
 

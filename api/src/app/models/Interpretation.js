@@ -5,7 +5,10 @@ class Interpretation extends Model {
   static init(sequelize) {
     super.init({
       interpretation: DataTypes.TEXT,
-    }, { sequelize });
+    }, {
+      sequelize,
+      tableName: 'interpretations'
+    });
   }
 
   static associate(models) {
