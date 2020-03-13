@@ -13,7 +13,7 @@ import express from 'express';
 import cors from 'cors';
 import expressIp from 'express-ip';
 import expressUserAgent from 'express-useragent';
-import accessLog from './middlewares/accesslog';
+import { AccessLogMiddleware } from './middlewares/accesslog';
 import routes from './routes';
 
 const app = express();
@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 app.use(expressIp().getIpInfoMiddleware);
 app.use(expressUserAgent.express());
-app.use(accessLog);
+app.use(AccessLogMiddleware);
 app.use(express.json());
 app.use('/v1', routes);
 
