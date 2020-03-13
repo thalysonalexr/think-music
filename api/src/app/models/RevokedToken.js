@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 
-class RevokedTokens extends Model {
+class RevokedToken extends Model {
   static init(sequelize) {
     super.init({
       token: DataTypes.STRING(255),
@@ -12,4 +12,4 @@ class RevokedTokens extends Model {
   }
 }
 
-export default RevokedTokens;
+export default RevokedToken;
