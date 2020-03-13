@@ -4,6 +4,7 @@ if ( ! process.env.NODE_ENV) {
 
 import './config';
 import './services/mongo';
+import './services/database';
 
 const port = process.env.PORT;
 const host = process.env.BASE_URL;
