@@ -1,7 +1,7 @@
 import Category from "../models/Category";
 
 export default {
-  async index(req, res) {
+  async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
 
     const options = {
@@ -22,7 +22,7 @@ export default {
     }
   },
 
-  async show(req, res) {
+  async show (req, res) {
     const { id } = req.params;
 
     try {
@@ -44,7 +44,7 @@ export default {
     }
   },
 
-  async store(req, res) {
+  async store (req, res) {
     const { title, description } = req.body;
 
     if (!title && !description) {
@@ -66,7 +66,7 @@ export default {
     }
   },
 
-  async update(req, res) {
+  async update (req, res) {
     const { id } = req.params;
     const { title, description } = req.body;
 
@@ -86,6 +86,28 @@ export default {
       return res.status(500).json({
         error: 500,
         message: 'Error on update category.'
+      });
+    }
+  },
+
+  async destroy (req, res) {
+    const { id } = req.params;
+
+    try {
+      await Category.destroy({ where: { id } });
+
+      return res.status(204).end();
+    } catch(err) {
+      if (err.name === 'SequelizeDatabaseError' && err.parent.code == 23502) {
+        return res.status(409).json({
+          error: 409,
+          message: 'The category is linked to at least one music.'
+        });
+      }
+
+      return res.status(500).json({
+        error: 500,
+        message: 'Error on destroy category.'
       });
     }
   }

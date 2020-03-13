@@ -70,7 +70,7 @@ export default {
     }
   },
 
-  async update(req, res) {
+  async update (req, res) {
     const { id } = req.params;
     const { name, email } = req.body;
 
@@ -98,7 +98,7 @@ export default {
     });
   },
 
-  async destroy(req, res) {
+  async destroy (req, res) {
     const { id } = req.params;
 
     if (req.userId === id || await isAdmin(req.userId)) {

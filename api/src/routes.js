@@ -82,6 +82,13 @@ router.put('/admin/categories/:id',
   CategoryController.update
 );
 
+router.delete('/admin/categories/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  authorizationMiddleware,
+  CategoryController.destroy
+);
+
 router.get('/admin/logs',
   authMiddleware,
   unprocessableMiddleware,
