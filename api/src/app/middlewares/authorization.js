@@ -1,10 +1,10 @@
 import User from '../models/User';
 
 const authorizationMiddleware = async (req, res, next) => {
-  const user = await User.findOne({
-    _id: req.userId,
+  const user = await User.findOne({ where: {
+    id: req.userId,
     role: 'admin'
-  });
+  } });
 
   if (user && user.role === 'admin') {
     req.role = 'admin';
