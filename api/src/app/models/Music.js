@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import sequelizePaginate from 'sequelize-paginate';
 
 class Music extends Model {
   static init(sequelize) {
@@ -8,12 +9,17 @@ class Music extends Model {
       description: DataTypes.STRING(280),
       letter: DataTypes.TEXT,
       author: DataTypes.STRING(255),
-    }, { sequelize });
+    }, {
+      sequelize,
+      tableName: 'musics'
+    });
   }
 
   static associate(models) {
     this.belongsTo(models.Category, { foreignKey: 'category_id', as: 'musics_category' });
   }
 }
+
+sequelizePaginate.paginate(Music);
 
 export default Music;
