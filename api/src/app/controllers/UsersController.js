@@ -1,9 +1,10 @@
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import crypto, { verify } from 'crypto';
+import crypto from 'crypto';
+
 import mailer from '../../services/mailer';
 
 import User from '../models/User';
+import RevokedTokens from '../models/RevokedTokens';
 
 const generateToken = (params = {}) => {
   return jwt.sign(params, process.env.TM_SECRET, {
@@ -262,13 +263,24 @@ export default {
     const { email, token, password } = req.body;
 
     try {
-      const user = await User.findOne({ email })
-        .select('+passwordResetToken passwordResetExpires');
+      const user = await User.findOne({ where: { email } });
 
       if ( ! user) {
         return res.status(404).json({
           error: 404,
           message: 'User not found.'
+        });
+      }
+
+      const revokedToken = await RevokedTokens.findOne({ where: {
+        user_id: user.id,
+        token: token
+      } });
+
+      if (revokedToken) {
+        return res.status(401).json({
+          error: 401,
+          message: 'The token has already been used.'
         });
       }
 
@@ -284,7 +296,7 @@ export default {
       if (now > user.passwordResetToken) {
         return res.status(401).json({
           error: 401,
-          message: 'Token expired. Generate a new one.'
+          message: 'Token expired. Generate a new token.'
         });
       }
 
@@ -292,8 +304,12 @@ export default {
 
       await user.save();
 
-      return res.status(204).end();
+      await RevokedTokens.create({
+        user_id: user.id,
+        token
+      });
 
+      return res.status(204).end();
     } catch (err) {
       return res.status(500).json({
         error: 500,
