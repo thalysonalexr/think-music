@@ -4,14 +4,14 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('likes', {
       interpretation_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         references: { model: 'interpretations', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       user_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         onUpdate: 'SET NULL',
         onDelete: 'SET NULL',

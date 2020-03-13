@@ -4,9 +4,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {    
     return queryInterface.createTable('musics', {
       id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
       },
       link: {
@@ -28,7 +28,7 @@ module.exports = {
         allowNull: false,
       },
       category_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         references: { model: 'categories', key: 'id' },
         onUpdate: 'SET NULL', // set null | cascade | restrict

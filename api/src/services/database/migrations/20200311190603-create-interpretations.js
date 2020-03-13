@@ -4,20 +4,20 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('interpretations', {
       id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
       },
       author_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: { model: 'users', key: 'id' },
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       music_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         references: { model: 'musics', key: 'id' },
         onUpdate: 'CASCADE',
