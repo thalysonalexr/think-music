@@ -1,6 +1,6 @@
 import AccessLog from '../data/AccessLog';
 
-const AccessLogMiddleware = async (req, res, next) => {
+export const AccessLogMiddleware = async (req, res, next) => {
   const date = Date.now();
   const host = `${req.protocol}://${req.host}`;
   const { ip } = req.ipInfo;
@@ -8,10 +8,28 @@ const AccessLogMiddleware = async (req, res, next) => {
   const { method } = req;
   const uri = req.originalUrl;
   const http = req.httpVersion;
-
-  await AccessLog.create({ date, host, ip, browser, method, uri, http })
-
-  return next();
+  
+  try {
+    await AccessLog.create({ date, host, ip, browser, method, uri, http })
+    return next();
+  } catch (err) {
+    return res.status(503).json({
+      error: 503,
+      message: 'Service Unavailable'
+    });
+  }
 }
 
-export default AccessLogMiddleware;
+export const logs = async (req, res) => {
+  const { page = 1 } = req.query;
+
+  try {
+    const logs = await AccessLog.paginate({}, { page, limit: 20 });
+    return res.status(200).json(logs);
+  } catch (err) {
+    return res.status(503).json({
+      error: 503,
+      message: 'Service Unavailable'
+    });
+  }
+}
