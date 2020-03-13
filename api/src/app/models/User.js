@@ -16,6 +16,9 @@ class User extends Model {
         beforeCreate: async (user, options) => {
           user.password = await bcrypt.hash(user.password, 10);
         },
+        beforeUpdate: async (user, options) => {
+          user.password = await bcrypt.hash(user.password, 10);
+        },
       },
       sequelize
     });
@@ -23,6 +26,10 @@ class User extends Model {
 
   async validatePassword (password) {
     return await bcrypt.compare(password, this.password);
+  }
+
+  static associate(models) {
+    this.hasMany(models.RevokedTokens, { foreignKey: 'user_id', as: 'tokens_user' });
   }
 }
 
