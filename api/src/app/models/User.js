@@ -1,53 +1,31 @@
-import { model, Schema } from 'mongoose';
-import paginate from 'mongoose-paginate';
 import bcrypt from 'bcryptjs';
+import sequelizePaginate from 'sequelize-paginate';
+import { Model, DataTypes } from 'sequelize';
 
-const UserSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    minlength: 1,
-    maxlength: 255
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    lowercase: true,
-    maxlength: 100
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 5,
-    select: false
-  },
-  role: {
-    type: String,
-    enum: ['user', 'admin'],
-    default: 'user'
-  },
-  status: {
-    type: Boolean,
-    default: true
-  },
-  passwordResetToken: {
-    type: String,
-    select: false
-  },
-  passwordResetExpires: {
-    type: Date,
-    select: false
+class User extends Model {
+  static init(sequelize) {
+    super.init({
+      role: DataTypes.ENUM('user', 'admin'),
+      name: DataTypes.STRING(255),
+      email: DataTypes.STRING(255),
+      password: DataTypes.STRING(255),
+      passwordResetExpires: DataTypes.DATE,
+      passwordResetToken: DataTypes.STRING(255)
+    }, {
+      hooks: {
+        beforeCreate: async (user, options) => {
+          user.password = await bcrypt.hash(user.password, 10);
+        },
+      },
+      sequelize
+    });
   }
-}, { timestamps: true });
 
-UserSchema.pre('save', async function (next) {
-  const hash = await bcrypt.hash(this.password, 10);
-  this.password = hash;
-  next();
-});
+  async validatePassword (password) {
+    return await bcrypt.compare(password, this.password);
+  }
+}
 
-UserSchema.plugin(paginate);
+sequelizePaginate.paginate(User);
 
-export default model('User', UserSchema);
+export default User;
