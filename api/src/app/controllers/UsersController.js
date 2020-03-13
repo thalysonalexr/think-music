@@ -72,9 +72,12 @@ export default {
 
     if (req.userId === id || await isAdmin(req.userId)) {
       try {
-        const user = await User.findByIdAndUpdate(id, {
-          name, email
-        }, { new: true });
+        const user = await User.findByPk(id);
+
+        user.name = name;
+        user.email = email;
+
+        await user.save();
         
         return res.status(200).json({ user });
       } catch (err) {
