@@ -35,10 +35,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
-      passwordResetExpires: {
+      password_reset_expires: {
         type: Sequelize.DATE,
       },
-      passwordResetToken: {
+      password_reset_token: {
         type: Sequelize.STRING(255),
       },
     });
