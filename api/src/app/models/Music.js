@@ -12,7 +12,7 @@ class Music extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Categories, { foreignKey: 'category_id', as: 'musics_category' });
+    this.belongsTo(models.Category, { foreignKey: 'category_id', as: 'musics_category' });
   }
 }
 
