@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import mailer from '../../services/mailer';
 
 import User from '../models/User';
-import RevokedTokens from '../models/RevokedTokens';
+import RevokedTokens from '../models/RevokedToken';
 
 const generateToken = (params = {}) => {
   return jwt.sign(params, process.env.TM_SECRET, {

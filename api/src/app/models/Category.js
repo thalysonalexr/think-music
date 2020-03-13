@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 
-class Categories extends Model {
+class Category extends Model {
   static init(sequelize) {
     super.init({
       title: DataTypes.STRING(45),
@@ -13,4 +13,4 @@ class Categories extends Model {
   }
 }
 
-export default Categories;
+export default Category;
