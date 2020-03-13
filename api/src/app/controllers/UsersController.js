@@ -48,15 +48,16 @@ export default {
     const { id } = req.params;
 
     try {
-      const user = await User.findById(id);
+      const user = await User.findByPk(id);
 
       if (req.userId === id || await isAdmin(req.userId)) {
         return res.status(200).json({ user });
       }
 
-      const { _id, name } = user;
-
-      return res.status(200).json({ 'user': { _id, name } });
+      return res.status(200).json({ 'user': {
+        id: user.id,
+        name: user.name
+      } });
     } catch (err) {
       console.log(err.message)
       return res.status(500).json({
