@@ -140,8 +140,8 @@ export default {
     const { email, password } = req.body;
 
     try {
-      const user = await User.findOne({ email }).select('+password');
-      
+      const user = await User.findOne({ where: { email } });
+
       if ( ! user) {
         return res.status(400).json({
           error: 404,
@@ -149,7 +149,7 @@ export default {
         });
       }
 
-      if ( ! await bcrypt.compare(password, user.password)) {
+      if ( ! await user.validatePassword(password)) {
         return res.status(401).json({
           error: 401,
           message: 'Password is incorrect.'
@@ -158,7 +158,7 @@ export default {
 
       user.password = undefined;
 
-      const token = generateToken({ id: user._id });
+      const token = generateToken({ id: user.id });
 
       return res.status(200).json({ user, token });
     } catch (err) {
