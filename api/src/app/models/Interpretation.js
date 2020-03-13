@@ -4,6 +4,11 @@ import sequelizePaginate from 'sequelize-paginate';
 class Interpretation extends Model {
   static init(sequelize) {
     super.init({
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
       interpretation: DataTypes.TEXT,
     }, {
       sequelize,

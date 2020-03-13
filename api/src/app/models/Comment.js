@@ -3,6 +3,11 @@ import { DataTypes, Model } from 'sequelize';
 class Comment extends Model {
   static init(sequelize) {
     super.init({
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
       comment: DataTypes.STRING(280),
     }, {
       sequelize,

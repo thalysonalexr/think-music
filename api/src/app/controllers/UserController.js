@@ -26,7 +26,7 @@ const isAdmin = async (id) => {
 export default {
   async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
-    const attributes = await isAdmin(req.userId) ? null: ['id', 'name'];
+    const attributes = await isAdmin(req.userId) ? ['id', 'role', 'name', 'email', 'passwordResetExpires', 'passwordResetToken', 'createdAt', 'updatedAt']: ['id', 'name'];
 
     const options = {
       page,
@@ -54,6 +54,7 @@ export default {
       const user = await User.findByPk(id);
 
       if (req.userId === id || await isAdmin(req.userId)) {
+        user.password = undefined;
         return res.status(200).json({ user });
       }
 
@@ -62,7 +63,6 @@ export default {
         name: user.name
       } });
     } catch (err) {
-      console.log(err.message)
       return res.status(500).json({
         error: 500,
         password: 'Error on show user.'
@@ -82,9 +82,12 @@ export default {
         user.email = email;
 
         await user.save();
+
+        user.password = undefined;
         
         return res.status(200).json({ user });
       } catch (err) {
+        return res.json(err.message);
         return res.status(500).json({
           error: 500,
           message: 'Error on update user.'
@@ -133,9 +136,11 @@ export default {
     try {
       const user = await User.findByPk(id);
 
-      user.status = status;
+      user.role = status ? 'disabled': 'user';
 
       await user.save();
+
+      user.password = undefined;
 
       return res.status(200).json({ user });
     } catch (err) {
@@ -206,7 +211,6 @@ export default {
 
       return res.status(201).json({ user, token });
     } catch (err) {
-      console.log(err)
       return res.status(400).json({
         error: 400,
         message: 'Bad Request.'

@@ -4,6 +4,11 @@ import sequelizePaginate from 'sequelize-paginate';
 class Music extends Model {
   static init(sequelize) {
     super.init({
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
       link: DataTypes.STRING(255),
       title: DataTypes.STRING(100),
       description: DataTypes.STRING(280),
