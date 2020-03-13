@@ -11,6 +11,7 @@ class User extends Model {
       password: DataTypes.STRING(255),
       passwordResetExpires: DataTypes.DATE,
       passwordResetToken: DataTypes.STRING(255),
+      status: DataTypes.BOOLEAN,
     }, {
       hooks: {
         beforeCreate: async (user, options) => {
