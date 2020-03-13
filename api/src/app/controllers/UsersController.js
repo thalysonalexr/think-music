@@ -124,9 +124,11 @@ export default {
     const { status } = req.query;
 
     try {
-      const user = await User.findByIdAndUpdate(id, {
-        status
-      }, { new: true });
+      const user = await User.findByPk(id);
+
+      user.status = status;
+
+      await user.save();
 
       return res.status(200).json({ user });
     } catch (err) {
