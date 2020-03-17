@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import { paginate } from 'sequelize-paginate';
 
 class Comment extends Model {
   static init(sequelize) {
@@ -17,8 +18,10 @@ class Comment extends Model {
 
   static associate(models) {
     this.belongsTo(models.Interpretation, { foreignKey: 'interpretation_id', as: 'comments_interpretation' });
-    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'comments_user' });
+    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
   }
 }
+
+paginate(Comment);
 
 export default Comment;

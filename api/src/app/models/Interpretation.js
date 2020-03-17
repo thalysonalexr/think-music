@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelizePaginate from 'sequelize-paginate';
+import { paginate } from 'sequelize-paginate';
 
 class Interpretation extends Model {
   static init(sequelize) {
@@ -17,12 +17,12 @@ class Interpretation extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Music, { foreignKey: 'music_id', as: 'interpretations_music' });
-    this.belongsTo(models.User, { foreignKey: 'author_id', as: 'interpretations_user' });
+    this.belongsTo(models.Music, { foreignKey: 'music_id', as: 'music' });
+    this.belongsTo(models.User, { foreignKey: 'author_id', as: 'author' });
     this.hasMany(models.Comment, { foreignKey: 'interpretation_id', as: 'comments_interpretation' });
   }
 }
 
-sequelizePaginate.paginate(Interpretation);
+paginate(Interpretation);
 
 export default Interpretation;

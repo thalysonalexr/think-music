@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelizePaginate from 'sequelize-paginate';
+import { paginate } from 'sequelize-paginate';
 
 class Music extends Model {
   static init(sequelize) {
@@ -21,10 +21,10 @@ class Music extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Category, { foreignKey: 'category_id', as: 'musics_category' });
+    this.belongsTo(models.Category, { foreignKey: 'category_id', as: 'category' });
   }
 }
 
-sequelizePaginate.paginate(Music);
+paginate(Music);
 
 export default Music;
