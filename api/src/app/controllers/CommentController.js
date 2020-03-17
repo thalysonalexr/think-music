@@ -65,7 +65,7 @@ export default {
         user_id: req.userId,
       });
 
-      return res.status(201).json({ commentModel });
+      return res.status(201).json({ 'comment': commentModel });
     } catch (err) {
       return res.status(500).json({
         error: 500,
@@ -92,7 +92,7 @@ export default {
 
       await commentModel.save();
 
-      return res.status(200).json({ commentModel });
+      return res.status(200).json({ 'comment': commentModel });
     } catch (err) {
       return res.status().json({
         error: 500,
