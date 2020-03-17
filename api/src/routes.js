@@ -8,6 +8,7 @@ import MusicController from './app/controllers/MusicController';
 import CategoryController from './app/controllers/CategoryController';
 import InterpretationController from './app/controllers/InterpretationController';
 import CommentController from './app/controllers/CommentController';
+import LikeController from './app/controllers/LikeController';
 
 import { logs } from './middlewares/accesslog';
 
@@ -196,6 +197,30 @@ router.delete('/interpretations/:interpretation_id/comments/:id',
   authMiddleware,
   unprocessableMiddleware,
   CommentController.destroy,
+);
+
+router.post('/interpretations/:interpretation_id/likes',
+  authMiddleware,
+  unprocessableMiddleware,
+  LikeController.store,
+);
+
+router.delete('/interpretations/:interpretation_id/likes',
+  authMiddleware,
+  unprocessableMiddleware,
+  LikeController.destroy,
+);
+
+router.get('/interpretations/:interpretation_id/likes/count',
+  authMiddleware,
+  unprocessableMiddleware,
+  LikeController.countLikes,
+);
+
+router.get('/interpretations/:interpretation_id/likes',
+  authMiddleware,
+  unprocessableMiddleware,
+  LikeController.index,
 );
 
 export default router;
