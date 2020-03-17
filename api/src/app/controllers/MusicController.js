@@ -6,11 +6,12 @@ import Category from '../models/Category';
 export default {
   async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
-    
+
     const options = {
       page,
       order: [[orderBy, 'ASC']],
       paginate: 10,
+      include: { association: 'category' },
     };
 
     try {
@@ -29,7 +30,9 @@ export default {
     const { id } = req.params;
 
     try {
-      const music = await Music.findByPk(id);
+      const music = await Music.findByPk(id, {
+        include: { association: 'category' }
+      });
 
       if (!music) {
         return res.status(404).json({
