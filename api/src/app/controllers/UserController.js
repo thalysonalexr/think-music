@@ -1,32 +1,24 @@
-import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 
 import mailer from '../../services/mailer';
+import { isAdmin, generateToken } from '../helpers';
 
 import User from '../models/User';
 import RevokedTokens from '../models/RevokedToken';
 
-const generateToken = (params = {}) => {
-  return jwt.sign(params, process.env.TM_SECRET, {
-    expiresIn: 86400
-  });
-}
-
-const isAdmin = async (id) => {
-  const user = await User.findOne({ where: {
-    id, role: 'admin'
-  } });
-
-  if (user)
-    return user.role === 'admin';
-
-  return false;
-}
-
 export default {
   async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
-    const attributes = await isAdmin(req.userId) ? ['id', 'role', 'name', 'email', 'passwordResetExpires', 'passwordResetToken', 'createdAt', 'updatedAt']: ['id', 'name'];
+    const attributes = await isAdmin(req.userId) ? [
+      'id',
+      'role',
+      'name',
+      'email',
+      'passwordResetExpires',
+      'passwordResetToken',
+      'createdAt',
+      'updatedAt'
+    ]: ['id', 'name'];
 
     const options = {
       page,
@@ -157,7 +149,7 @@ export default {
     try {
       const user = await User.findOne({ where: { email } });
 
-      if ( ! user) {
+      if ( ! user || user.role === 'disabled') {
         return res.status(400).json({
           error: 404,
           password: 'User not exists.'
@@ -211,6 +203,7 @@ export default {
 
       return res.status(201).json({ user, token });
     } catch (err) {
+      console.log(err.message)
       return res.status(400).json({
         error: 400,
         message: 'Bad Request.'
