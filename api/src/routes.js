@@ -1,10 +1,14 @@
 import { Router } from 'express';
+
 import authMiddleware from './app/middlewares/auth';
 import authorizationMiddleware from './app/middlewares/authorization';
 import unprocessableMiddleware from './app/middlewares/unprocessable';
 import UserController from './app/controllers/UserController';
 import MusicController from './app/controllers/MusicController';
 import CategoryController from './app/controllers/CategoryController';
+import InterpretationController from './app/controllers/InterpretationController';
+import CommentController from './app/controllers/CommentController';
+
 import { logs } from './middlewares/accesslog';
 
 const router = Router();
@@ -47,7 +51,7 @@ router.delete('/users/:id',
   UserController.destroy
 );
 
-router.post('/users/admin',
+router.post('/admin',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
@@ -103,7 +107,7 @@ router.get('/admin/logs',
   logs
 );
 
-router.post('/users/:id/enable',
+router.post('/admin/:id/enable',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
@@ -132,6 +136,66 @@ router.get('/categories/:id',
   authMiddleware,
   unprocessableMiddleware,
   CategoryController.show
+);
+
+router.get('/interpretations',
+  authMiddleware,
+  unprocessableMiddleware,
+  InterpretationController.index
+);
+
+router.get('/interpretations/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  InterpretationController.show
+);
+
+router.post('/interpretations',
+  authMiddleware,
+  unprocessableMiddleware,
+  InterpretationController.store
+);
+
+router.put('/interpretations/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  InterpretationController.update
+);
+
+router.delete('/interpretations/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  InterpretationController.destroy
+);
+
+router.post('/interpretations/:interpretation_id/comments',
+  authMiddleware,
+  unprocessableMiddleware,
+  CommentController.store,
+);
+
+router.get('/interpretations/:interpretation_id/comments',
+  authMiddleware,
+  unprocessableMiddleware,
+  CommentController.index,
+);
+
+router.get('/interpretations/:interpretation_id/comments/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  CommentController.show,
+);
+
+router.put('/interpretations/:interpretation_id/comments/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  CommentController.update,
+);
+
+router.delete('/interpretations/:interpretation_id/comments/:id',
+  authMiddleware,
+  unprocessableMiddleware,
+  CommentController.destroy,
 );
 
 export default router;
