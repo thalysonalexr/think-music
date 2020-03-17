@@ -67,6 +67,13 @@ export default {
 
       return res.status(201).json({ 'comment': commentModel });
     } catch (err) {
+      if (err.name === 'SequelizeForeignKeyConstraintError') {
+        return res.status(409).json({
+          error: 409,
+          message: 'Interpretation not found to id.'
+        });
+      }
+      
       return res.status(500).json({
         error: 500,
         message: 'Error on create comment.'

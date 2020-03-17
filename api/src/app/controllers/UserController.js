@@ -45,6 +45,13 @@ export default {
     try {
       const user = await User.findByPk(id);
 
+      if (!user) {
+        return res.status(404).json({
+          error: 404,
+          message: 'Not found user.'
+        });
+      }
+
       if (req.userId === id || await isAdmin(req.userId)) {
         user.password = undefined;
         return res.status(200).json({ user });
@@ -70,6 +77,13 @@ export default {
       try {
         const user = await User.findByPk(id);
 
+        if (!user) {
+          return res.status(404).json({
+            error: 404,
+            message: 'Not found user.'
+          });
+        }
+
         user.name = name;
         user.email = email;
 
@@ -79,7 +93,6 @@ export default {
         
         return res.status(200).json({ user });
       } catch (err) {
-        return res.json(err.message);
         return res.status(500).json({
           error: 500,
           message: 'Error on update user.'
@@ -203,7 +216,6 @@ export default {
 
       return res.status(201).json({ user, token });
     } catch (err) {
-      console.log(err.message)
       return res.status(400).json({
         error: 400,
         message: 'Bad Request.'

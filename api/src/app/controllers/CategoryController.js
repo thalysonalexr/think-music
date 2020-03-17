@@ -59,6 +59,13 @@ export default {
 
       return res.status(201).json({ category });
     } catch (err) {
+      if (err.name === 'SequelizeUniqueConstraintError') {
+        return res.status(409).json({
+          error: 409,
+          message: 'Category already exists for title.'
+        });
+      }
+
       return res.status(500).json({
         error: 500,
         message: 'Error on create category.'
