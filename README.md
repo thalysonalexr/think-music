@@ -1,5 +1,6 @@
 # think-music
 
+[![GitHub version](https://badge.fury.io/gh/thalysonalexr%2Fthink-music.svg)](https://badge.fury.io/gh/thalysonalexr%2Fthink-music)
 [![Software License](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/thalysonalexr/think-music/blob/master/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/thalysonalexr/think-music/issues)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/thalysonalexr)
