@@ -108,7 +108,7 @@ export default {
 
       return res.status(404).json({
         error: 404,
-        message: 'Music not found'
+        message: 'Category not found'
       });
     } catch(err) {
       if (err.name === 'SequelizeDatabaseError' && err.parent.code == 23502) {

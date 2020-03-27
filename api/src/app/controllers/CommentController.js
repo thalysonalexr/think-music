@@ -9,7 +9,7 @@ export default {
       page,
       order: [[orderBy, 'ASC']],
       paginate: 10,
-      include: { association: 'user' },
+      include: { association: 'user', attributes: ['id', 'name'] },
       attributes: ['id', 'comment', 'createdAt', 'updatedAt'],
       where: { interpretation_id }
     }

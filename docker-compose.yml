@@ -16,8 +16,10 @@ services:
       - ./api/node_modules:/usr/app/node_modules
     depends_on:
       - mongo
+      - postgres
     links:
       - mongo
+      - postgres
     
   postgres:
     image: postgres
