@@ -1,6 +1,6 @@
 import User from '../models/User';
 
-const unprocessableMiddleware = async (req, res, next) => {
+export const unprocessableMiddleware = async (req, res, next) => {
   try {
     const user = await User.findByPk(req.userId);
 
@@ -11,13 +11,10 @@ const unprocessableMiddleware = async (req, res, next) => {
       error: 422,
       message: 'This user are inactive or latest removed.'
     });
-  } catch (err) {
-    return res.json(err.message);
+  } catch {
     return res.status(503).json({
       error: 503,
       message: 'Service Unavailable'
     });
   }
 }
-
-export default unprocessableMiddleware;

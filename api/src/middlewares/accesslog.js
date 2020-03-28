@@ -1,6 +1,6 @@
 import AccessLog from '../data/AccessLog';
 
-export const AccessLogMiddleware = async (req, res, next) => {
+export const accessLogMiddleware = async (req, res, next) => {
   const date = Date.now();
   const host = `${req.protocol}://${req.host}`;
   const { ip } = req.ipInfo;
@@ -20,7 +20,7 @@ export const AccessLogMiddleware = async (req, res, next) => {
   }
 }
 
-export const logs = async (req, res) => {
+export const showLogsMiddleware = async (req, res) => {
   const { page = 1 } = req.query;
 
   try {
