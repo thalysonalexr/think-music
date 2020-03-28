@@ -1,10 +1,9 @@
 import { Router } from 'express';
 
 import GenericMiddlewares from './middlewares';
-
 import Middlewares from './app/middlewares';
-
 import Controllers from './app/controllers';
+import Validators from './app/validators';
 
 const router = Router();
 
@@ -17,36 +16,41 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/auth/register', Controllers.auth.register);
-router.post('/auth/authenticate', Controllers.auth.auth);
-router.post('/auth/forgot_password', Controllers.auth.initRecovery);
-router.post('/auth/reset_password', Controllers.auth.resetPassword);
+router.post('/auth/register', Validators.auth.register(), Controllers.auth.register);
+router.post('/auth/authenticate', Validators.auth.auth(), Controllers.auth.auth);
+router.post('/auth/forgot_password', Validators.auth.initRecovery(), Controllers.auth.initRecovery);
+router.post('/auth/reset_password', Validators.auth.reset(), Controllers.auth.resetPassword);
 
 router.get('/users',
+  Validators.user.index(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.user.index
 );
 
 router.get('/users/:id',
+  Validators.user.show(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.user.show
 );
 
 router.put('/users/:id',
+  Validators.user.update(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.user.update
 );
 
 router.delete('/users/:id',
+  Validators.user.destroy(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.user.destroy
 );
 
 router.post('/admin',
+  Validators.auth.register(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Middlewares.authorization,
@@ -54,6 +58,7 @@ router.post('/admin',
 );
 
 router.post('/admin/musics',
+  Validators.music.store(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Middlewares.authorization,
@@ -61,6 +66,7 @@ router.post('/admin/musics',
 );
 
 router.put('/admin/musics/:id',
+  Validators.music.update(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Middlewares.authorization,
@@ -68,6 +74,7 @@ router.put('/admin/musics/:id',
 );
 
 router.delete('/admin/musics/:id',
+  Validators.music.destroy(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Middlewares.authorization,
@@ -75,6 +82,7 @@ router.delete('/admin/musics/:id',
 );
 
 router.post('/admin/categories',
+  Validators.category.store(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Middlewares.authorization,
@@ -82,6 +90,7 @@ router.post('/admin/categories',
 );
 
 router.put('/admin/categories/:id',
+  Validators.category.update(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Middlewares.authorization,
@@ -89,6 +98,7 @@ router.put('/admin/categories/:id',
 );
 
 router.delete('/admin/categories/:id',
+  Validators.category.destroy(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Middlewares.authorization,
@@ -103,6 +113,7 @@ router.get('/admin/logs',
 );
 
 router.post('/admin/:id/enable',
+  Validators.admin.disableUser(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Middlewares.authorization,
@@ -110,78 +121,91 @@ router.post('/admin/:id/enable',
 );
 
 router.get('/musics',
+  Validators.music.index(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.music.index
 );
 
 router.get('/musics/:id',
+  Validators.music.show(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.music.show
 );
 
 router.get('/categories',
+  Validators.category.index(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.category.index
 );
 
 router.get('/categories/:id',
+  Validators.category.show(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.category.show
 );
 
 router.get('/interpretations',
+  Validators.interp.index(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.interp.index
 );
 
 router.get('/interpretations/:id',
+  Validators.interp.show(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.interp.show
 );
 
 router.post('/interpretations',
+  Validators.interp.store(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.interp.store
 );
 
 router.put('/interpretations/:id',
+  Validators.interp.update(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.interp.update
 );
 
 router.delete('/interpretations/:id',
+  Validators.interp.destroy(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.interp.destroy
 );
 
 router.post('/interpretations/:interpretation_id/comments',
+  Validators.comment.store(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.comment.store,
 );
 
 router.get('/interpretations/:interpretation_id/comments',
+  Validators.comment.index(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.comment.index,
 );
 
 router.get('/interpretations/:interpretation_id/comments/:id',
+  Validators.comment.show(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.comment.show,
 );
 
 router.put('/interpretations/:interpretation_id/comments/:id',
+  Validators.comment.update(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.comment.update,
@@ -194,24 +218,28 @@ router.delete('/interpretations/:interpretation_id/comments/:id',
 );
 
 router.post('/interpretations/:interpretation_id/likes',
+  Validators.like.store(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.like.store,
 );
 
 router.delete('/interpretations/:interpretation_id/likes',
+  Validators.like.destroy(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.like.destroy,
 );
 
 router.get('/interpretations/:interpretation_id/likes/count',
+  Validators.like.countLikes(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.like.countLikes,
 );
 
 router.get('/interpretations/:interpretation_id/likes',
+  Validators.like.index(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.like.index,

@@ -64,7 +64,12 @@ export class MusicController {
     } = req.body;
 
     try {
-      const model = await findOrCreateCategory(category);
+      const model = await findOrCreateCategory(category.title);
+
+      if (category.description) {
+        model.description = category.description;
+        model.save();
+      }
 
       const music = await Music.create({
         link,
@@ -105,7 +110,12 @@ export class MusicController {
         });
       }
 
-      const model = findOrCreateCategory(category);
+      const model = findOrCreateCategory(category.title);
+
+      if (category.description) {
+        model.description = category.description;
+        model.save();
+      }
 
       music.link = link;
       music.title = title;
