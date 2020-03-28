@@ -1,35 +1,58 @@
 import Like from '../models/Like';
 
 export default {
+  async index (req, res) {
+    const { page = 1 } = req.query;
+    const { interpretation_id } = req.params;
+  
+    const options = {
+      page,
+      paginate: 25,
+      order: [['created_at', 'ASC']],
+      attributes: ['like', 'dislike', 'createdAt', 'updatedAt'],
+      include: {
+        association: 'user',
+        attributes: ['id', 'name']
+      },
+      where: {
+        interpretation_id
+      }
+    };
+  
+    try {
+      const likes = await Like.paginate(options);
+  
+      return res.status(200).json(likes);
+    } catch {
+      return res.status(500).json({
+        error: 500,
+        message: 'Error on list likes by interpretations.'
+      });
+    }
+  },
+
   async store (req, res) {
+    const { userId } = req;
     const { action } = req.query;
     const { interpretation_id } = req.params;
 
     let like, dislike;
-    
+
     try {
-      switch (action) {
-        case 'like':
-          like = true; dislike = false;
-          break;
-        case 'dislike':
-          like = false; dislike = true;
-          break;
-        default:
-          return res.status(400).json({
-            error: 400,
-            message: 'Bad Request'
-          });
+      if (action === 'like') {
+        like = true; dislike = false;
+      } else {
+        like = false; dislike = true;
       }
 
-      const likeModel = await Like.create({
+      const model = await Like.create({
         like,
         dislike,
         interpretation_id,
-        user_id: req.userId,
+        user_id: userId,
       });
-      
-      return res.status(201).json({ 'like': likeModel });
+
+      return res.status(201).json({ 'like': model });
     } catch (err) {
       if (err.name === 'SequelizeUniqueConstraintError') {
         return res.status(409).json({
@@ -45,12 +68,16 @@ export default {
     }
   },
 
-  async destroy (req, res) {    
+  async destroy (req, res) {
+    const { userId } = req;
     const { interpretation_id } = req.params;
 
     try {
       const like = await Like.destroy({
-        where: { interpretation_id, user_id: req.userId }
+        where: {
+          interpretation_id,
+          user_id: userId
+        }
       });
 
       if (like)
@@ -60,7 +87,7 @@ export default {
         error: 404,
         message: 'Like not found'
       });
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
         message: 'Error on destroy like.'
@@ -87,36 +114,10 @@ export default {
       });
 
       return res.status(200).json({ likes, dislikes });
-    } catch (err) {
-      console.log(err.message)
+    } catch {
       return res.status(500).json({
         error: 500,
         message: 'Error on count likes.'
-      });
-    }
-  },
-
-  async index (req, res) {
-    const { interpretation_id } = req.params;
-    const { page = 1 } = req.query;
-
-    const options = {
-      page,
-      order: [['created_at', 'ASC']],
-      paginate: 25,
-      where: { interpretation_id },
-      attributes: ['like', 'dislike', 'createdAt', 'updatedAt'],
-      include: { association: 'user', attributes: ['id', 'name'] }
-    };
-
-    try {
-      const likes = await Like.paginate(options);
-
-      return res.status(200).json(likes);
-    } catch (err) {
-      return res.status(500).json({
-        error: 500,
-        message: 'Error on list likes by interpretations.'
       });
     }
   },

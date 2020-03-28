@@ -6,15 +6,15 @@ export default {
 
     const options = {
       page,
-      order: [[orderBy, 'ASC']],
       paginate: 10,
+      order: [[orderBy, 'ASC']],
     };
 
     try {
       const categories = await Category.paginate(options);
 
       return res.status(200).json(categories);
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
         password: 'Error on list categories.'
@@ -36,7 +36,7 @@ export default {
       }
 
       return res.status(200).json({ category });
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
         message: 'Error on show category'
@@ -47,22 +47,18 @@ export default {
   async store (req, res) {
     const { title, description } = req.body;
 
-    if (!title && !description) {
-      return res.status(400).json({
-        error: 400,
-        message: 'Bad Request.'
-      });
-    }
-
     try {
-      const category = await Category.create({ title, description });
+      const category = await Category.create({
+        title,
+        description
+      });
 
       return res.status(201).json({ category });
     } catch (err) {
       if (err.name === 'SequelizeUniqueConstraintError') {
         return res.status(409).json({
           error: 409,
-          message: 'Category already exists for title.'
+          message: 'Category already exists to title.'
         });
       }
 
@@ -80,16 +76,27 @@ export default {
     try {
       const category = await Category.findByPk(id);
 
-      if (title)
-        category.title = title;
-      
-      if (description)
-        category.description = description;
+      if (!category) {
+        return res.status(404).json({
+          error: 404,
+          message: 'Category not found.'
+        });
+      }
+
+      category.title = title;
+      category.description = description;
 
       await category.save();
 
-      return res.status(200).json(category);
+      return res.status(200).json({ category });
     } catch (err) {
+      if (err.name === 'SequelizeUniqueConstraintError') {
+        return res.status(409).json({
+          error: 409,
+          message: 'Category already exists to title.'
+        });
+      }
+
       return res.status(500).json({
         error: 500,
         message: 'Error on update category.'
@@ -101,7 +108,9 @@ export default {
     const { id } = req.params;
 
     try {
-      const category = await Category.destroy({ where: { id } });
+      const category = await Category.destroy({
+        where: { id }
+      });
 
       if (category)
         return res.status(204).end();
@@ -110,8 +119,8 @@ export default {
         error: 404,
         message: 'Category not found'
       });
-    } catch(err) {
-      if (err.name === 'SequelizeDatabaseError' && err.parent.code == 23502) {
+    } catch (err) {
+      if (err.parent.code === 23502) {
         return res.status(409).json({
           error: 409,
           message: 'The category is linked to at least one music.'
