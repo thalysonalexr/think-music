@@ -1,7 +1,7 @@
 import Category from "../models/Category";
 
-export default {
-  async index (req, res) {
+export class CategoryController {
+  static async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
 
     const options = {
@@ -20,9 +20,9 @@ export default {
         password: 'Error on list categories.'
       });
     }
-  },
+  }
 
-  async show (req, res) {
+  static async show (req, res) {
     const { id } = req.params;
 
     try {
@@ -42,9 +42,9 @@ export default {
         message: 'Error on show category'
       });
     }
-  },
+  }
 
-  async store (req, res) {
+  static async store (req, res) {
     const { title, description } = req.body;
 
     try {
@@ -67,9 +67,9 @@ export default {
         message: 'Error on create category.'
       });
     }
-  },
+  }
 
-  async update (req, res) {
+  static async update (req, res) {
     const { id } = req.params;
     const { title, description } = req.body;
 
@@ -102,9 +102,9 @@ export default {
         message: 'Error on update category.'
       });
     }
-  },
+  }
 
-  async destroy (req, res) {
+  static async destroy (req, res) {
     const { id } = req.params;
 
     try {

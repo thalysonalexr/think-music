@@ -1,7 +1,7 @@
 import Comment from '../models/Comment';
 
-export default {
-  async index (req, res) {
+export class CommentController {
+  static async index (req, res) {
     const { interpretation_id } = req.params;
     const { page = 1, orderBy = 'id' } = req.query;
 
@@ -29,9 +29,9 @@ export default {
         message: 'Error on list comments.'
       });
     }
-  },
+  }
 
-  async show (req, res) {
+  static async show (req, res) {
     const { userId } = req;
     const { id, interpretation_id } = req.params;
 
@@ -58,9 +58,9 @@ export default {
         message: 'Error on show comment.'
       })
     }
-  },
+  }
 
-  async store (req, res) {
+  static async store (req, res) {
     const { userId } = req;
     const { comment } = req.body;
     const { interpretation_id } = req.params;
@@ -86,9 +86,9 @@ export default {
         message: 'Error on create comment.'
       })
     }
-  },
+  }
 
-  async update (req, res) {
+  static async update (req, res) {
     const { comment } = req.body;
     const { id, interpretation_id } = req.params;
 
@@ -117,9 +117,9 @@ export default {
         message: 'Error on update comment.'
       });
     }
-  },
+  }
 
-  async destroy (req, res) {
+  static async destroy (req, res) {
     const { userId } = req;
     const { id, interpretation_id } = req.params;
 

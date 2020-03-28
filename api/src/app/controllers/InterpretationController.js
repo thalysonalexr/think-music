@@ -2,8 +2,8 @@ import Interpretation from '../models/Interpretation';
 
 import { isAdmin } from '../utils';
 
-export default {
-  async index (req, res) {
+export class InterpretationController {
+  static async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
 
     const options = {
@@ -37,9 +37,9 @@ export default {
         message: 'Error on list interpretations.'
       });
     }
-  },
+  }
 
-  async store (req, res) {
+  static async store (req, res) {
     const { userId } = req;
     const { interpretation, music } = req.body;
 
@@ -59,9 +59,9 @@ export default {
         message: 'Error on create interpretation.'
       });
     }
-  },
+  }
 
-  async show (req, res) {
+  static async show (req, res) {
     const { id } = req.params;
 
     try {
@@ -90,9 +90,9 @@ export default {
         message: 'Error on show interpretation.'
       });
     }
-  },
+  }
 
-  async update (req, res) {
+  static async update (req, res) {
     const { id } = req.params;
     const { userId } = req;
     const { interpretation, music } = req.body;
@@ -127,9 +127,9 @@ export default {
         message: 'Error on update interpretation.'
       });
     }
-  },
+  }
 
-  async destroy (req, res) {
+  static async destroy (req, res) {
     const { id } = req.params;
     const { userId } = req;
 

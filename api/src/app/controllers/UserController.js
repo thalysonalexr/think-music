@@ -2,8 +2,8 @@ import { isAdmin } from './helpers';
 
 import User from '../models/User';
 
-export default {
-  async index (req, res) {
+export class UserController {
+  static async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
     const attributes = await isAdmin(req.userId) ? [
       'id',
@@ -33,9 +33,9 @@ export default {
         password: 'Error on list users.'
       });
     }
-  },
+  }
 
-  async show (req, res) {
+  static async show (req, res) {
     const { id } = req.params;
 
     try {
@@ -65,9 +65,9 @@ export default {
         password: 'Error on show user.'
       });
     }
-  },
+  }
   
-  async update (req, res) {
+  static async update (req, res) {
     const { userId } = req;
     const { id } = req.params;
     const { name, email } = req.body;
@@ -103,9 +103,9 @@ export default {
       error: 403,
       message: 'You not have access this resource.'
     });
-  },
+  }
   
-  async destroy (req, res) {
+  static async destroy (req, res) {
     const { userId } = req;
     const { id } = req.params;
 
@@ -134,5 +134,5 @@ export default {
       error: 403,
       message: 'You not have access this resource.'
     });
-  },
+  }
 }

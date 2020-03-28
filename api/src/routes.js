@@ -5,14 +5,7 @@ import authMiddleware from './app/middlewares/auth';
 import authorizationMiddleware from './app/middlewares/authorization';
 import unprocessableMiddleware from './app/middlewares/unprocessable';
 
-import AdminController from './app/controllers/AdminController';
-import AuthController from './app/controllers/AuthController';
-import CategoryController from './app/controllers/CategoryController';
-import CommentController from './app/controllers/CommentController';
-import InterpretationController from './app/controllers/InterpretationController';
-import LikeController from './app/controllers/LikeController';
-import MusicController from './app/controllers/MusicController';
-import UserController from './app/controllers/UserController';
+import Controllers from './app/controllers';
 
 const router = Router();
 
@@ -25,82 +18,82 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/auth/register', AuthController.register);
-router.post('/auth/authenticate', AuthController.auth);
-router.post('/auth/forgot_password', AuthController.initRecovery);
-router.post('/auth/reset_password', AuthController.resetPassword);
+router.post('/auth/register', Controllers.auth.register);
+router.post('/auth/authenticate', Controllers.auth.auth);
+router.post('/auth/forgot_password', Controllers.auth.initRecovery);
+router.post('/auth/reset_password', Controllers.auth.resetPassword);
 
 router.get('/users',
   authMiddleware,
   unprocessableMiddleware,
-  UserController.index
+  Controllers.user.index
 );
 
 router.get('/users/:id',
   authMiddleware,
   unprocessableMiddleware,
-  UserController.show
+  Controllers.user.show
 );
 
 router.put('/users/:id',
   authMiddleware,
   unprocessableMiddleware,
-  UserController.update
+  Controllers.user.update
 );
 
 router.delete('/users/:id',
   authMiddleware,
   unprocessableMiddleware,
-  UserController.destroy
+  Controllers.user.destroy
 );
 
 router.post('/admin',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  AuthController.register
+  Controllers.auth.register
 );
 
 router.post('/admin/musics',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  MusicController.store
+  Controllers.music.store
 );
 
 router.put('/admin/musics/:id',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  MusicController.update
+  Controllers.music.update
 );
 
 router.delete('/admin/musics/:id',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  MusicController.destroy
+  Controllers.music.destroy
 );
 
 router.post('/admin/categories',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  CategoryController.store
+  Controllers.category.store
 );
 
 router.put('/admin/categories/:id',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  CategoryController.update
+  Controllers.category.update
 );
 
 router.delete('/admin/categories/:id',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  CategoryController.destroy
+  Controllers.category.destroy
 );
 
 router.get('/admin/logs',
@@ -114,115 +107,115 @@ router.post('/admin/:id/enable',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  AdminController.disableUser
+  Controllers.admin.disableUser
 );
 
 router.get('/musics',
   authMiddleware,
   unprocessableMiddleware,
-  MusicController.index
+  Controllers.music.index
 );
 
 router.get('/musics/:id',
   authMiddleware,
   unprocessableMiddleware,
-  MusicController.show
+  Controllers.music.show
 );
 
 router.get('/categories',
   authMiddleware,
   unprocessableMiddleware,
-  CategoryController.index
+  Controllers.category.index
 );
 
 router.get('/categories/:id',
   authMiddleware,
   unprocessableMiddleware,
-  CategoryController.show
+  Controllers.category.show
 );
 
 router.get('/interpretations',
   authMiddleware,
   unprocessableMiddleware,
-  InterpretationController.index
+  Controllers.interp.index
 );
 
 router.get('/interpretations/:id',
   authMiddleware,
   unprocessableMiddleware,
-  InterpretationController.show
+  Controllers.interp.show
 );
 
 router.post('/interpretations',
   authMiddleware,
   unprocessableMiddleware,
-  InterpretationController.store
+  Controllers.interp.store
 );
 
 router.put('/interpretations/:id',
   authMiddleware,
   unprocessableMiddleware,
-  InterpretationController.update
+  Controllers.interp.update
 );
 
 router.delete('/interpretations/:id',
   authMiddleware,
   unprocessableMiddleware,
-  InterpretationController.destroy
+  Controllers.interp.destroy
 );
 
 router.post('/interpretations/:interpretation_id/comments',
   authMiddleware,
   unprocessableMiddleware,
-  CommentController.store,
+  Controllers.comment.store,
 );
 
 router.get('/interpretations/:interpretation_id/comments',
   authMiddleware,
   unprocessableMiddleware,
-  CommentController.index,
+  Controllers.comment.index,
 );
 
 router.get('/interpretations/:interpretation_id/comments/:id',
   authMiddleware,
   unprocessableMiddleware,
-  CommentController.show,
+  Controllers.comment.show,
 );
 
 router.put('/interpretations/:interpretation_id/comments/:id',
   authMiddleware,
   unprocessableMiddleware,
-  CommentController.update,
+  Controllers.comment.update,
 );
 
 router.delete('/interpretations/:interpretation_id/comments/:id',
   authMiddleware,
   unprocessableMiddleware,
-  CommentController.destroy,
+  Controllers.comment.destroy,
 );
 
 router.post('/interpretations/:interpretation_id/likes',
   authMiddleware,
   unprocessableMiddleware,
-  LikeController.store,
+  Controllers.like.store,
 );
 
 router.delete('/interpretations/:interpretation_id/likes',
   authMiddleware,
   unprocessableMiddleware,
-  LikeController.destroy,
+  Controllers.like.destroy,
 );
 
 router.get('/interpretations/:interpretation_id/likes/count',
   authMiddleware,
   unprocessableMiddleware,
-  LikeController.countLikes,
+  Controllers.like.countLikes,
 );
 
 router.get('/interpretations/:interpretation_id/likes',
   authMiddleware,
   unprocessableMiddleware,
-  LikeController.index,
+  Controllers.like.index,
 );
 
 export default router;

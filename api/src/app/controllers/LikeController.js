@@ -1,7 +1,7 @@
 import Like from '../models/Like';
 
-export default {
-  async index (req, res) {
+export class LikeController {
+  static async index (req, res) {
     const { page = 1 } = req.query;
     const { interpretation_id } = req.params;
   
@@ -29,9 +29,9 @@ export default {
         message: 'Error on list likes by interpretations.'
       });
     }
-  },
+  }
 
-  async store (req, res) {
+  static async store (req, res) {
     const { userId } = req;
     const { action } = req.query;
     const { interpretation_id } = req.params;
@@ -66,9 +66,9 @@ export default {
         message: 'Error on create like.'
       });
     }
-  },
+  }
 
-  async destroy (req, res) {
+  static async destroy (req, res) {
     const { userId } = req;
     const { interpretation_id } = req.params;
 
@@ -93,9 +93,9 @@ export default {
         message: 'Error on destroy like.'
       });
     }
-  },
+  }
 
-  async countLikes (req, res) {
+  static async countLikes (req, res) {
     const { interpretation_id } = req.params;
 
     try {
@@ -120,5 +120,5 @@ export default {
         message: 'Error on count likes.'
       });
     }
-  },
+  }
 }

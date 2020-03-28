@@ -6,8 +6,8 @@ import mailer from '../../services/mailer';
 import User from '../models/User';
 import RevokedTokens from '../models/RevokedToken';
 
-export default {
-  async auth (req, res) {
+export class AuthController {
+  static async auth (req, res) {
     const { email, password } = req.body;
 
     try {
@@ -42,9 +42,9 @@ export default {
         message: 'Failed authenticate.'
       });
     }
-  },
+  }
 
-  async register (req, res) {
+  static async register (req, res) {
     const { email } = req.body;
 
     try {
@@ -78,9 +78,9 @@ export default {
         message: 'Error on register user.'
       });
     }
-  },
+  }
 
-  async initRecovery (req, res) {
+  static async initRecovery (req, res) {
     const { email } = req.body;
 
     try {
@@ -127,9 +127,9 @@ export default {
         message: 'Error on forgot password, try again later.'
       });
     }
-  },
+  }
 
-  async resetPassword (req, res) {
+  static async resetPassword (req, res) {
     const { email, token, password } = req.body;
 
     try {

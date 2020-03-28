@@ -1,7 +1,7 @@
 import User from '../models/User';
 
-export default {
-  async disableUser (req, res) {
+export class AdminController {
+  static async disableUser (req, res) {
     const { id } = req.params;
     const { status } = req.query;
 
@@ -28,5 +28,5 @@ export default {
         message: 'Error on disable user.'
       });
     }
-  },
+  }
 }

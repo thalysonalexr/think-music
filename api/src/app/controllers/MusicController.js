@@ -2,8 +2,8 @@ import { findOrCreateCategory } from './helpers';
 
 import Music from '../models/Music';
 
-export default {
-  async index (req, res) {
+export class MusicController {
+  static async index (req, res) {
     const { page = 1, orderBy = 'id' } = req.query;
 
     const options = {
@@ -25,9 +25,9 @@ export default {
         password: 'Error on list musics.'
       });
     }
-  },
+  }
 
-  async show (req, res) {
+  static async show (req, res) {
     const { id } = req.params;
 
     try {
@@ -51,9 +51,9 @@ export default {
         message: 'Error on show music.'
       });
     }
-  },
+  }
 
-  async store (req, res) {
+  static async store (req, res) {
     const {
       link,
       title,
@@ -82,9 +82,9 @@ export default {
         message: 'Error on create music.'
       });
     }
-  },
+  }
 
-  async update (req, res) {
+  static async update (req, res) {
     const { id } = req.params;
     const {
       link,
@@ -123,9 +123,9 @@ export default {
         message: 'Error on update music.'
       });
     }
-  },
+  }
 
-  async destroy (req, res) {
+  static async destroy (req, res) {
     const { id } = req.params;
 
     try {
