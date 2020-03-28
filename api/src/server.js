@@ -1,3 +1,5 @@
+import app from './app';
+
 const port = process.env.PORT;
 const host = process.env.BASE_URL;
 
