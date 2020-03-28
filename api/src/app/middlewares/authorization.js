@@ -1,6 +1,6 @@
 import User from '../models/User';
 
-const authorizationMiddleware = async (req, res, next) => {
+export const authorizationMiddleware = async (req, res, next) => {
   try {
     const user = await User.findOne({ where: {
       id: req.userId,
@@ -16,12 +16,10 @@ const authorizationMiddleware = async (req, res, next) => {
       error: 403,
       message: 'Forbidden the access to resource.'
     });
-  } catch (err) {
+  } catch {
     return res.status(503).json({
       error: 503,
       message: 'Service Unavailable'
     });
   }
 }
-
-export default authorizationMiddleware;
