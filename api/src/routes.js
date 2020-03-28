@@ -1,9 +1,8 @@
 import { Router } from 'express';
 
-import { logs } from './middlewares/accesslog';
-import authMiddleware from './app/middlewares/auth';
-import authorizationMiddleware from './app/middlewares/authorization';
-import unprocessableMiddleware from './app/middlewares/unprocessable';
+import GenericMiddlewares from './middlewares';
+
+import Middlewares from './app/middlewares';
 
 import AdminController from './app/controllers/AdminController';
 import AuthController from './app/controllers/AuthController';
@@ -31,197 +30,197 @@ router.post('/auth/forgot_password', AuthController.initRecovery);
 router.post('/auth/reset_password', AuthController.resetPassword);
 
 router.get('/users',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   UserController.index
 );
 
 router.get('/users/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   UserController.show
 );
 
 router.put('/users/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   UserController.update
 );
 
 router.delete('/users/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   UserController.destroy
 );
 
 router.post('/admin',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
   AuthController.register
 );
 
 router.post('/admin/musics',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
   MusicController.store
 );
 
 router.put('/admin/musics/:id',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
   MusicController.update
 );
 
 router.delete('/admin/musics/:id',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
   MusicController.destroy
 );
 
 router.post('/admin/categories',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
   CategoryController.store
 );
 
 router.put('/admin/categories/:id',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
   CategoryController.update
 );
 
 router.delete('/admin/categories/:id',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
   CategoryController.destroy
 );
 
 router.get('/admin/logs',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
-  logs
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
+  GenericMiddlewares.showLogs
 );
 
 router.post('/admin/:id/enable',
-  authMiddleware,
-  unprocessableMiddleware,
-  authorizationMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
+  Middlewares.authorization,
   AdminController.disableUser
 );
 
 router.get('/musics',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   MusicController.index
 );
 
 router.get('/musics/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   MusicController.show
 );
 
 router.get('/categories',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   CategoryController.index
 );
 
 router.get('/categories/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   CategoryController.show
 );
 
 router.get('/interpretations',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   InterpretationController.index
 );
 
 router.get('/interpretations/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   InterpretationController.show
 );
 
 router.post('/interpretations',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   InterpretationController.store
 );
 
 router.put('/interpretations/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   InterpretationController.update
 );
 
 router.delete('/interpretations/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   InterpretationController.destroy
 );
 
 router.post('/interpretations/:interpretation_id/comments',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   CommentController.store,
 );
 
 router.get('/interpretations/:interpretation_id/comments',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   CommentController.index,
 );
 
 router.get('/interpretations/:interpretation_id/comments/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   CommentController.show,
 );
 
 router.put('/interpretations/:interpretation_id/comments/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   CommentController.update,
 );
 
 router.delete('/interpretations/:interpretation_id/comments/:id',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   CommentController.destroy,
 );
 
 router.post('/interpretations/:interpretation_id/likes',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   LikeController.store,
 );
 
 router.delete('/interpretations/:interpretation_id/likes',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   LikeController.destroy,
 );
 
 router.get('/interpretations/:interpretation_id/likes/count',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   LikeController.countLikes,
 );
 
 router.get('/interpretations/:interpretation_id/likes',
-  authMiddleware,
-  unprocessableMiddleware,
+  Middlewares.auth,
+  Middlewares.unprocessable,
   LikeController.index,
 );
 
