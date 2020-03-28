@@ -1,7 +1,6 @@
-import { Op } from 'sequelize';
+import { findOrCreateCategory } from './helpers';
 
 import Music from '../models/Music';
-import Category from '../models/Category';
 
 export default {
   async index (req, res) {
@@ -9,16 +8,18 @@ export default {
 
     const options = {
       page,
-      order: [[orderBy, 'ASC']],
       paginate: 10,
-      include: { association: 'category' },
+      order: [[orderBy, 'ASC']],
+      include: {
+        association: 'category'
+      },
     };
 
     try {
       const musics = await Music.paginate(options);
 
       return res.status(200).json(musics);
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
         password: 'Error on list musics.'
@@ -31,7 +32,9 @@ export default {
 
     try {
       const music = await Music.findByPk(id, {
-        include: { association: 'category' }
+        include: {
+          association: 'category'
+        }
       });
 
       if (!music) {
@@ -42,7 +45,7 @@ export default {
       }
 
       return res.status(200).json({ music });
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
         message: 'Error on show music.'
@@ -51,42 +54,29 @@ export default {
   },
 
   async store (req, res) {
-    const { link, title, author, description, letter, category } = req.body;
-
-    if (link === undefined ||
-       title === undefined ||
-       author === undefined ||
-       category === undefined) {
-      return res.status(400).json({
-        error: 400,
-        message: 'Bad Request.'
-      });
-    }
+    const {
+      link,
+      title,
+      author,
+      letter,
+      category,
+      description,
+    } = req.body;
 
     try {
-      const [ cat ] = await Category.findOrCreate({ where: {
-        title: {
-          [Op.iLike]: `%${category}%`
-        }
-      },
-      defaults: {
-        title: category,
-        description: '',
-      }
-     });
+      const model = await findOrCreateCategory(category);
 
       const music = await Music.create({
         link,
         title,
-        description,
         letter,
         author,
-        category_id: cat.id
+        description,
+        category_id: model.id
       });
 
       return res.status(201).json({ music });
-    } catch (err) {
-      console.log(err);
+    } catch {
       return res.status(500).json({
         err: 500,
         message: 'Error on create music.'
@@ -96,19 +86,16 @@ export default {
 
   async update (req, res) {
     const { id } = req.params;
-    const { link, title, description, letter, author, category } = req.body;
+    const {
+      link,
+      title,
+      letter,
+      author,
+      category,
+      description,
+    } = req.body;
 
     try {
-      if (link === undefined ||
-        title === undefined ||
-        author === undefined ||
-        category === undefined) {
-        return res.status(400).json({
-          error: 400,
-          message: 'Bad Request.'
-        });
-      }
-
       const music = await Music.findByPk(id);
 
       if (!music) {
@@ -118,30 +105,19 @@ export default {
         });
       }
 
+      const model = findOrCreateCategory(category);
+
       music.link = link;
       music.title = title;
-      music.description = description;
       music.letter = letter;
       music.author = author;
-
-      const [ cat ] = await Category.findOrCreate({ where: {
-        title: {
-            [Op.iLike]: `%${category}%`
-          }
-        },
-        defaults: {
-          title: category,
-          description: '',
-        }
-      });
-
-      music.category_id = cat.id;
+      music.description = description;
+      music.category_id = model.id;
 
       await music.save();
 
       return res.status(200).json({ music });
-    } catch (err) {
-      console.log(err.message)
+    } catch {
       return res.status(500).json({
         error: 500,
         message: 'Error on update music.'
@@ -153,7 +129,9 @@ export default {
     const { id } = req.params;
 
     try {
-      const music = await Music.destroy({ where: { id } });
+      const music = await Music.destroy({
+        where: { id }
+      });
 
       if (music)
         return res.status(204).end();
@@ -162,10 +140,10 @@ export default {
         error: 404,
         message: 'Music not found'
       });
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
-        message: ''
+        message: 'Error on destroy music.'
       });
     }
   }

@@ -7,18 +7,23 @@ export default {
 
     const options = {
       page,
-      order: [[orderBy, 'ASC']],
       paginate: 10,
-      include: { association: 'user', attributes: ['id', 'name'] },
+      include: {
+        association: 'user',
+        attributes: ['id', 'name']
+      },
+      order: [[orderBy, 'ASC']],
       attributes: ['id', 'comment', 'createdAt', 'updatedAt'],
-      where: { interpretation_id }
+      where: {
+        interpretation_id
+      }
     }
 
     try {
       const comments = await Comment.paginate(options);
 
       return res.status(200).json(comments);
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
         message: 'Error on list comments.'
@@ -27,14 +32,15 @@ export default {
   },
 
   async show (req, res) {
-    const { interpretation_id, id } = req.params;
+    const { userId } = req;
+    const { id, interpretation_id } = req.params;
 
     try {
       const comment = await Comment.findOne({
         where: {
           id,
           interpretation_id,
-          user_id: req.userId
+          user_id: userId
         }
       });
 
@@ -46,7 +52,7 @@ export default {
       }
 
       return res.status(200).json({ comment });
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
         message: 'Error on show comment.'
@@ -55,17 +61,18 @@ export default {
   },
 
   async store (req, res) {
+    const { userId } = req;
     const { comment } = req.body;
     const { interpretation_id } = req.params;
-    
+
     try {
-      const commentModel = await Comment.create({
+      const model = await Comment.create({
         comment,
+        user_id: userId,
         interpretation_id,
-        user_id: req.userId,
       });
 
-      return res.status(201).json({ 'comment': commentModel });
+      return res.status(201).json({ 'comment': model });
     } catch (err) {
       if (err.name === 'SequelizeForeignKeyConstraintError') {
         return res.status(409).json({
@@ -73,7 +80,7 @@ export default {
           message: 'Interpretation not found to id.'
         });
       }
-      
+
       return res.status(500).json({
         error: 500,
         message: 'Error on create comment.'
@@ -82,25 +89,29 @@ export default {
   },
 
   async update (req, res) {
-    const { interpretation_id, id } = req.params;
     const { comment } = req.body;
+    const { id, interpretation_id } = req.params;
 
     try {
-      const commentModel = await Comment.findOne({ where: { id, interpretation_id } });
+      const model = await Comment.findOne({
+        where: {
+          id,
+          interpretation_id
+        }
+      });
 
-      if (!commentModel) {
+      if (!model) {
         return res.status(404).json({
           error: 404,
           message: 'Not found comment'
         });
       }
 
-      commentModel.comment = comment;
+      model.comment = comment;
+      await model.save();
 
-      await commentModel.save();
-
-      return res.status(200).json({ 'comment': commentModel });
-    } catch (err) {
+      return res.status(200).json({ 'comment': model });
+    } catch {
       return res.status().json({
         error: 500,
         message: 'Error on update comment.'
@@ -109,11 +120,15 @@ export default {
   },
 
   async destroy (req, res) {
-    const { interpretation_id, id } = req.params;
+    const { userId } = req;
+    const { id, interpretation_id } = req.params;
 
     try {
       const comment = await Comment.findOne({
-        where: { id, interpretation_id }
+        where: {
+          id,
+          interpretation_id
+        }
       });
 
       if (!comment) {
@@ -123,7 +138,7 @@ export default {
         });
       }
 
-      if (comment.user_id !== req.userId) {
+      if (comment.user_id !== userId) {
         return res.status(403).json({
           error: 403,
           message: 'You not have access this resource.'
@@ -133,7 +148,7 @@ export default {
       await Comment.destroy({ where: { id } });
 
       return res.status(204).end();
-    } catch (err) {
+    } catch {
       return res.status(500).json({
         error: 500,
         message: 'Error on destroy comment.'

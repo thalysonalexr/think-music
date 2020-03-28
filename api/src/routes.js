@@ -1,16 +1,18 @@
 import { Router } from 'express';
 
+import { logs } from './middlewares/accesslog';
 import authMiddleware from './app/middlewares/auth';
 import authorizationMiddleware from './app/middlewares/authorization';
 import unprocessableMiddleware from './app/middlewares/unprocessable';
-import UserController from './app/controllers/UserController';
-import MusicController from './app/controllers/MusicController';
-import CategoryController from './app/controllers/CategoryController';
-import InterpretationController from './app/controllers/InterpretationController';
-import CommentController from './app/controllers/CommentController';
-import LikeController from './app/controllers/LikeController';
 
-import { logs } from './middlewares/accesslog';
+import AdminController from './app/controllers/AdminController';
+import AuthController from './app/controllers/AuthController';
+import CategoryController from './app/controllers/CategoryController';
+import CommentController from './app/controllers/CommentController';
+import InterpretationController from './app/controllers/InterpretationController';
+import LikeController from './app/controllers/LikeController';
+import MusicController from './app/controllers/MusicController';
+import UserController from './app/controllers/UserController';
 
 const router = Router();
 
@@ -23,10 +25,10 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/auth/register', UserController.store);
-router.post('/auth/authenticate', UserController.auth);
-router.post('/auth/forgot_password', UserController.forgotPassword);
-router.post('/auth/reset_password', UserController.resetPassword);
+router.post('/auth/register', AuthController.register);
+router.post('/auth/authenticate', AuthController.auth);
+router.post('/auth/forgot_password', AuthController.initRecovery);
+router.post('/auth/reset_password', AuthController.resetPassword);
 
 router.get('/users',
   authMiddleware,
@@ -56,7 +58,7 @@ router.post('/admin',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  UserController.store
+  AuthController.register
 );
 
 router.post('/admin/musics',
@@ -112,7 +114,7 @@ router.post('/admin/:id/enable',
   authMiddleware,
   unprocessableMiddleware,
   authorizationMiddleware,
-  UserController.disableUser
+  AdminController.disableUser
 );
 
 router.get('/musics',
