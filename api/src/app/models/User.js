@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import { generateTokenJwt } from '../utils';
 import { paginate } from 'sequelize-paginate';
 import { Model, DataTypes } from 'sequelize';
 
@@ -32,8 +33,12 @@ class User extends Model {
     });
   }
 
-  async validatePassword (password) {
+  async validatePassword(password) {
     return await bcrypt.compare(password, this.password);
+  }
+
+  async generateTokenJwt() {
+    return generateTokenJwt(process.env.TM_SECRET, { id: this.id });
   }
 
   static associate(models) {

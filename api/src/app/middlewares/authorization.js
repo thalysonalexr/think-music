@@ -7,7 +7,7 @@ export const authorizationMiddleware = async (req, res, next) => {
       role: 'admin'
     } });
 
-    if (user && user.role === 'admin') {
+    if (user?.role === 'admin') {
       req.role = 'admin';
       return next();
     }

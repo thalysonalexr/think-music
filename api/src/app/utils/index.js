@@ -1,12 +1,12 @@
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 
-export function generateTokenCrypto() {
-  return crypto.randomBytes(20).toString('hex');
+export function generateTokenCrypto(size = 20) {
+  return crypto.randomBytes(size).toString('hex');
 }
 
-export function generateTokenJwt(params = {}) {
-  return jwt.sign(params, process.env.TM_SECRET, {
+export function generateTokenJwt(secretKey, payload = {}) {
+  return jwt.sign(payload, secretKey, {
     expiresIn: 86400
   });
 }

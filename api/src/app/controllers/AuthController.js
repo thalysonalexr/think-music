@@ -1,7 +1,6 @@
-import { generateTokenJwt } from '../utils';
 import { generateTokenCrypto } from '../utils';
 
-import mailer from '../../services/mailer';
+import { Mailer } from '../../services/mailer';
 
 import User from '../models/User';
 import RevokedTokens from '../models/RevokedToken';
@@ -16,8 +15,8 @@ export class AuthController {
       });
 
       if (!user || user.role === 'disabled') {
-        return res.status(404).json({
-          error: 404,
+        return res.status(401).json({
+          error: 401,
           password: 'User not exists.'
         });
       }
@@ -33,7 +32,7 @@ export class AuthController {
       user.passwordResetExpires = undefined;
       user.passwordResetToken = undefined;
 
-      const token = generateTokenJwt({ id: user.id });
+      const token = await user.generateTokenJwt();
 
       return res.status(200).json({ user, token });
     } catch {
@@ -69,10 +68,10 @@ export class AuthController {
       user.passwordResetExpires = undefined;
       user.passwordResetToken = undefined;
 
-      const token = generateTokenJwt({ id: user.id });
+      const token = await user.generateTokenJwt();
 
       return res.status(201).json({ user, token });
-    } catch {
+    } catch (err) {
       return res.status(500).json({
         error: 500,
         message: 'Error on register user.'
@@ -105,24 +104,18 @@ export class AuthController {
 
       await user.save();
 
-      mailer.sendMail({
+      const mailer = new Mailer;
+
+      await mailer.sendMail({
         to: email,
-        from: 'support@thinkmusic.com',
+        subject: 'Forgot Password?',
         template: 'auth/forgot_password',
         context: { token }
-      }, (err) => {
-        if (err) {
-          return res.status(500).json({
-            error: 500,
-            message: 'Cannot send forgot password email.'
-          });
-        }
-
-        return res.status(204).end();
       });
 
-    } catch {
-      res.status(500).json({
+      return res.status(204).end();
+    } catch (err) {
+      return res.status(500).json({
         error: 500,
         message: 'Error on forgot password, try again later.'
       });
@@ -167,7 +160,7 @@ export class AuthController {
 
       const now = new Date();
 
-      if (now > user.passwordResetToken) {
+      if (now > user.passwordResetExpires) {
         return res.status(401).json({
           error: 401,
           message: 'Token expired. Generate a new token.'

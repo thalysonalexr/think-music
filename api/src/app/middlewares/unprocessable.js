@@ -4,7 +4,7 @@ export const unprocessableMiddleware = async (req, res, next) => {
   try {
     const user = await User.findByPk(req.userId);
 
-    if (user && user.role !== 'disabled')
+    if (user?.role !== 'disabled')
       return next();
 
     return res.status(422).json({
