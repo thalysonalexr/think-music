@@ -1,25 +1,31 @@
-import { DataTypes, Model } from 'sequelize';
-import { paginate } from 'sequelize-paginate';
+import { DataTypes, Model } from "sequelize";
+import { paginate } from "sequelize-paginate";
 
 class Interpretation extends Model {
   static init(sequelize) {
-    super.init({
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true
+    super.init(
+      {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
+        interpretation: DataTypes.TEXT,
       },
-      interpretation: DataTypes.TEXT,
-    }, {
-      sequelize,
-      tableName: 'interpretations'
-    });
+      {
+        sequelize,
+        tableName: "interpretations",
+      }
+    );
   }
 
   static associate(models) {
-    this.belongsTo(models.Music, { foreignKey: 'music_id', as: 'music' });
-    this.belongsTo(models.User, { foreignKey: 'author_id', as: 'author' });
-    this.hasMany(models.Comment, { foreignKey: 'interpretation_id', as: 'comments_interpretation' });
+    this.belongsTo(models.Music, { foreignKey: "music_id", as: "music" });
+    this.belongsTo(models.User, { foreignKey: "author_id", as: "author" });
+    this.hasMany(models.Comment, {
+      foreignKey: "interpretation_id",
+      as: "comments_interpretation",
+    });
   }
 }
 

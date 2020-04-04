@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('interpretations', {
+    return queryInterface.createTable("interpretations", {
       id: {
         type: Sequelize.UUID,
         primaryKey: true,
@@ -11,17 +11,17 @@ module.exports = {
       },
       author_id: {
         type: Sequelize.UUID,
-        references: { model: 'users', key: 'id' },
+        references: { model: "users", key: "id" },
         allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       music_id: {
         type: Sequelize.UUID,
         allowNull: false,
-        references: { model: 'musics', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        references: { model: "musics", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       interpretation: {
         type: Sequelize.TEXT,
@@ -34,11 +34,11 @@ module.exports = {
       updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
-      }
+      },
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('interpretations');
-  }
+    return queryInterface.dropTable("interpretations");
+  },
 };

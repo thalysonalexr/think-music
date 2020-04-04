@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {    
-    return queryInterface.createTable('musics', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable("musics", {
       id: {
         type: Sequelize.UUID,
         primaryKey: true,
@@ -30,9 +30,9 @@ module.exports = {
       category_id: {
         type: Sequelize.UUID,
         allowNull: false,
-        references: { model: 'categories', key: 'id' },
-        onUpdate: 'SET NULL', // set null | cascade | restrict
-        onDelete: 'SET NULL', // set null | cascade | restrict
+        references: { model: "categories", key: "id" },
+        onUpdate: "SET NULL", // set null | cascade | restrict
+        onDelete: "SET NULL", // set null | cascade | restrict
       },
       created_at: {
         type: Sequelize.DATE,
@@ -40,12 +40,12 @@ module.exports = {
       },
       updated_at: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('musics');
-  }
+    return queryInterface.dropTable("musics");
+  },
 };

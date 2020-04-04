@@ -1,23 +1,23 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('likes', {
+    return queryInterface.createTable("likes", {
       interpretation_id: {
         primaryKey: true,
         type: Sequelize.UUID,
         allowNull: false,
-        references: { model: 'interpretations', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        references: { model: "interpretations", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       user_id: {
         primaryKey: true,
         type: Sequelize.UUID,
         allowNull: false,
-        references: { model: 'users', key: 'id' },
-        onUpdate: 'SET NULL',
-        onDelete: 'SET NULL',
+        references: { model: "users", key: "id" },
+        onUpdate: "SET NULL",
+        onDelete: "SET NULL",
       },
       like: {
         type: Sequelize.BOOLEAN,
@@ -35,12 +35,12 @@ module.exports = {
       },
       updated_at: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('likes');
-  }
+    return queryInterface.dropTable("likes");
+  },
 };

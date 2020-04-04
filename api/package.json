@@ -1,11 +1,14 @@
 {
   "name": "think-music-api",
   "version": "1.0.0",
-  "description": "Web service to Think Music Project",
-  "main": "src/server.js",
+  "description": "Web Service to Think Music Project",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec sucrase-node src/server.js"
+    "dev": "nodemon --exec sucrase-node src/server.js --ignore __tests__",
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
+    "start": "node src/server.js"
   },
   "keywords": [
     "Music",
@@ -31,11 +34,20 @@
     "pg": "^7.18.2",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.5",
-    "sequelize-paginate": "^1.1.6"
+    "sequelize-paginate": "^1.1.6",
+    "sqlite3": "^4.1.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.9.0",
+    "@types/jest": "^25.1.4",
+    "babel-jest": "^25.2.3",
+    "factory-girl": "^5.0.4",
+    "faker": "^4.1.0",
+    "jest": "^25.2.3",
     "nodemon": "^2.0.2",
     "sequelize-cli": "^5.5.1",
-    "sucrase": "^3.12.1"
+    "sucrase": "^3.12.1",
+    "supertest": "^4.0.2",
+    "uuid": "^7.0.3"
   }
 }

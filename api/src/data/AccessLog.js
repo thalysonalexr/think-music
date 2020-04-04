@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate';
+import { Schema, model } from "mongoose";
+import mongoosePaginate from "mongoose-paginate";
 
 const AccessLogSchema = new Schema({
   date: {
@@ -29,9 +29,9 @@ const AccessLogSchema = new Schema({
   http: {
     type: String,
     required: true,
-  }
+  },
 });
 
 AccessLogSchema.plugin(mongoosePaginate);
 
-export default model('AccessLog', AccessLogSchema);
+export default model("AccessLog", AccessLogSchema);
