@@ -1,45 +1,42 @@
-import Interpretation from '../models/Interpretation';
+import Interpretation from "../models/Interpretation";
 
-import { isAdmin } from '../utils';
+import { isAdmin } from "../utils";
 
 export class InterpretationController {
-  static async index (req, res) {
-    const { page = 1, orderBy = 'id' } = req.query;
+  static async index(req, res) {
+    const { page = 1, orderBy = "id" } = req.query;
 
     const options = {
       page,
       paginate: 10,
-      order: [[orderBy, 'ASC']],
-      attributes: [
-        'id',
-        'interpretation',
-        'createdAt',
-        'updatedAt',
+      order: [[orderBy, "ASC"]],
+      attributes: ["id", "interpretation", "createdAt", "updatedAt"],
+      include: [
+        {
+          association: "author",
+          attributes: ["id", "name"],
+        },
+        {
+          association: "music",
+          attributes: ["id", "link", "title", "author"],
+          include: { association: "category" },
+        },
       ],
-      include: [{
-        association: 'author',
-        attributes: ['id', 'name']
-      },
-      {
-        association: 'music',
-        attributes: ['id', 'link', 'title', 'author'],
-        include: { association: 'category' }
-      }]
     };
 
     try {
       const interpretations = await Interpretation.paginate(options);
 
-      return res.status(200).json(interpretations)
+      return res.status(200).json(interpretations);
     } catch {
       return res.status(500).json({
         error: 500,
-        message: 'Error on list interpretations.'
+        message: "Error on list interpretations.",
       });
     }
   }
 
-  static async store (req, res) {
+  static async store(req, res) {
     const { userId } = req;
     const { interpretation, music } = req.body;
 
@@ -51,35 +48,35 @@ export class InterpretationController {
       });
 
       return res.status(201).json({
-        'interpretation': model
+        interpretation: model,
       });
     } catch {
       return res.status(500).json({
         error: 500,
-        message: 'Error on create interpretation.'
+        message: "Error on create interpretation.",
       });
     }
   }
 
-  static async show (req, res) {
+  static async show(req, res) {
     const { id } = req.params;
 
     try {
       const interpretation = await Interpretation.findByPk(id, {
         include: [
           {
-            association: 'music',
+            association: "music",
             include: {
-              association: 'category'
-            }
-          }
-        ]
+              association: "category",
+            },
+          },
+        ],
       });
 
       if (!interpretation) {
         return res.status(404).json({
           error: 404,
-          message: 'Interpretation not found.'
+          message: "Interpretation not found.",
         });
       }
 
@@ -87,12 +84,12 @@ export class InterpretationController {
     } catch {
       return res.status(500).json({
         error: 500,
-        message: 'Error on show interpretation.'
+        message: "Error on show interpretation.",
       });
     }
   }
 
-  static async update (req, res) {
+  static async update(req, res) {
     const { id } = req.params;
     const { userId } = req;
     const { interpretation, music } = req.body;
@@ -103,14 +100,14 @@ export class InterpretationController {
       if (!model) {
         return res.status(404).json({
           error: 404,
-          message: 'Not found interpretation.'
+          message: "Not found interpretation.",
         });
       }
 
       if (model.author_id !== userId && !isAdmin(userId)) {
         return res.status(403).json({
           error: 403,
-          message: 'You not have access this resource.'
+          message: "You not have access this resource.",
         });
       }
 
@@ -119,17 +116,17 @@ export class InterpretationController {
       await model.save();
 
       return res.status(200).json({
-        'interpretation': model
+        interpretation: model,
       });
     } catch {
       return res.status(500).json({
         error: 500,
-        message: 'Error on update interpretation.'
+        message: "Error on update interpretation.",
       });
     }
   }
 
-  static async destroy (req, res) {
+  static async destroy(req, res) {
     const { id } = req.params;
     const { userId } = req;
 
@@ -139,26 +136,26 @@ export class InterpretationController {
       if (!interpretation) {
         return res.status(404).json({
           error: 404,
-          message: 'Interpretation not found.'
+          message: "Interpretation not found.",
         });
       }
 
       if (interpretation.author_id !== userId && !isAdmin(userId)) {
         return res.status(403).json({
           error: 403,
-          message: 'You not have access this resource.'
+          message: "You not have access this resource.",
         });
       }
 
       await Interpretation.destroy({
-        where: { id }
+        where: { id },
       });
 
       return res.status(204).end();
     } catch {
       return res.status().json({
         error: 500,
-        message: 'Error on destroy interpretation.'
+        message: "Error on destroy interpretation.",
       });
     }
   }

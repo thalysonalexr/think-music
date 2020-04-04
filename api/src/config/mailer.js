@@ -3,9 +3,9 @@ export default {
   port: process.env.TM_MAIL_PORT,
   auth: {
     user: process.env.TM_MAIL_USER,
-    pass: process.env.TM_MAIL_PASS
+    pass: process.env.TM_MAIL_PASS,
   },
   default: {
-    from: 'Think Music <noreply@thinkmusic.com>',
+    from: "Think Music <noreply@thinkmusic.com>",
   },
 };

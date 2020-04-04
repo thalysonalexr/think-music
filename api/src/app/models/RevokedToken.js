@@ -1,19 +1,22 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes, Model } from "sequelize";
 
 class RevokedToken extends Model {
   static init(sequelize) {
-    super.init({
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true
+    super.init(
+      {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
+        token: DataTypes.STRING(255),
       },
-      token: DataTypes.STRING(255),
-    }, { sequelize });
+      { sequelize }
+    );
   }
 
   static associate(models) {
-    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'owner' });
+    this.belongsTo(models.User, { foreignKey: "user_id", as: "owner" });
   }
 }
 

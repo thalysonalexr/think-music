@@ -1,9 +1,11 @@
-import sequelize from '../../src/services/database';
+import sequelize from "../../src/services/database";
 
-export default () => {
-  return Promise.all(
-    Object.keys(sequelize.models).map(key => {
-      return sequelize.models[key].destroy({ truncate: true, force: true });
+export default async () => {
+  const connection = await sequelize();
+
+  return await Promise.all(
+    Object.keys(connection.models).map(async (key) => {
+      return await connection.models[key].truncate();
     })
   );
-}
+};

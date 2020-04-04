@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable("users", {
       id: {
         type: Sequelize.UUID,
         primaryKey: true,
@@ -10,8 +10,8 @@ module.exports = {
         allowNull: false,
       },
       role: {
-        type: Sequelize.ENUM('user', 'admin', 'disabled'),
-        defaultValue: 'user',
+        type: Sequelize.ENUM("user", "admin", "disabled"),
+        defaultValue: "user",
         allowNull: false,
       },
       name: {
@@ -33,7 +33,7 @@ module.exports = {
       },
       updated_at: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
       password_reset_expires: {
         type: Sequelize.DATE,
@@ -45,6 +45,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users');
-  }
+    return queryInterface.dropTable("users");
+  },
 };

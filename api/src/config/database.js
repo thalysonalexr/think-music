@@ -1,15 +1,15 @@
 if (!process.env.NODE_ENV) {
-  process.env.NODE_ENV = 'development';
+  process.env.NODE_ENV = "development";
 }
 
 const env = {
-  development: '.env.dev',
-  test: '.env.test',
-  production: '.env'
-}
+  development: ".env.dev",
+  test: ".env.test",
+  production: ".env",
+};
 
-require('dotenv').config({
-  path: env[process.env.NODE_ENV]
+require("dotenv").config({
+  path: env[process.env.NODE_ENV],
 });
 
 module.exports = {
@@ -22,8 +22,8 @@ module.exports = {
     database: process.env.DB_DATABASE,
     define: {
       timestamps: true,
-      underscored: true
-    }
+      underscored: true,
+    },
   },
   test: {
     dialect: process.env.DB_DIALECT,
@@ -32,8 +32,8 @@ module.exports = {
     logging: false,
     define: {
       timestamps: true,
-      underscored: true
-    }
+      underscored: true,
+    },
   },
-  production: {}
+  production: {},
 };

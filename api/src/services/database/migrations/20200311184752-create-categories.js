@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {    
-    return queryInterface.createTable('categories', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable("categories", {
       id: {
         type: Sequelize.UUID,
         primaryKey: true,
@@ -24,12 +24,12 @@ module.exports = {
       },
       updated_at: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('categories');
-  }
+    return queryInterface.dropTable("categories");
+  },
 };
