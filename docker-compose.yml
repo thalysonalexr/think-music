@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 
 services:
   api:
@@ -20,7 +20,7 @@ services:
     links:
       - mongo
       - postgres
-    
+
   postgres:
     image: postgres
     container_name: think-music_postgres
@@ -34,14 +34,3 @@ services:
       - ./data/db/postgres:/data/postgres
     ports:
       - "${POSTGRES_PORT}:5432"
-
-  mongo:
-    image: mongo
-    environment:
-      - MONGO_DATA_DIR=/data/db
-    restart: always
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./data/db/mongo:/data/db
-    container_name: think-music_mongo

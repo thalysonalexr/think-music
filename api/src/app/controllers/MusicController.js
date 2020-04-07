@@ -74,7 +74,7 @@ export class MusicController {
       });
     }
 
-    const model = findOrCreateCategory(category.title);
+    const model = await findOrCreateCategory(category.title);
 
     if (category.description) {
       model.description = category.description;

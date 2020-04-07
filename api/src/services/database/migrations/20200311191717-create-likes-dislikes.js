@@ -3,21 +3,25 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("likes", {
-      interpretation_id: {
+      id: {
+        type: Sequelize.UUID,
         primaryKey: true,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+      },
+      user_id: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: { model: "users", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
+      interpretation_id: {
         type: Sequelize.UUID,
         allowNull: false,
         references: { model: "interpretations", key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
-      },
-      user_id: {
-        primaryKey: true,
-        type: Sequelize.UUID,
-        allowNull: false,
-        references: { model: "users", key: "id" },
-        onUpdate: "SET NULL",
-        onDelete: "SET NULL",
       },
       like: {
         type: Sequelize.BOOLEAN,

@@ -1,6 +1,5 @@
 import { Router } from "express";
 
-import GenericMiddlewares from "./middlewares";
 import Middlewares from "./app/middlewares";
 import Controllers from "./app/controllers";
 import Validators from "./app/validators";
@@ -132,14 +131,6 @@ router.delete(
   Controllers.category.destroy
 );
 
-router.get(
-  "/admin/logs",
-  Middlewares.auth,
-  Middlewares.unprocessable,
-  Middlewares.authorization,
-  GenericMiddlewares.showLogs
-);
-
 router.post(
   "/admin/:id/enable",
   Validators.admin.disableUser(),
@@ -255,6 +246,7 @@ router.put(
 
 router.delete(
   "/interpretations/:interpretation_id/comments/:id",
+  Validators.comment.destroy(),
   Middlewares.auth,
   Middlewares.unprocessable,
   Controllers.comment.destroy

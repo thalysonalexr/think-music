@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import hbs from "nodemailer-express-handlebars";
 import path from "path";
 
-import config from "../config/mailer";
+import config from "../../config/mailer";
 
 export class Mailer {
   constructor() {
