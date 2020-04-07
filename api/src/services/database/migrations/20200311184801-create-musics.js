@@ -31,8 +31,8 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: false,
         references: { model: "categories", key: "id" },
-        onUpdate: "SET NULL", // set null | cascade | restrict
-        onDelete: "SET NULL", // set null | cascade | restrict
+        onUpdate: "RESTRICT", // set null | cascade | restrict
+        onDelete: "RESTRICT", // set null | cascade | restrict
       },
       created_at: {
         type: Sequelize.DATE,

@@ -5,12 +5,9 @@ class Like extends Model {
   static init(sequelize) {
     super.init(
       {
-        interpretation_id: {
+        id: {
           type: DataTypes.UUID,
-          primaryKey: true,
-        },
-        user_id: {
-          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
           primaryKey: true,
         },
         like: DataTypes.BOOLEAN,

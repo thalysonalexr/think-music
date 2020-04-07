@@ -13,9 +13,4 @@ Object.keys(models).forEach((model) => {
   models[model].associate(connection.models);
 });
 
-export default async () => {
-  await connection.authenticate();
-  await connection.sync();
-
-  return connection;
-};
+export default connection;

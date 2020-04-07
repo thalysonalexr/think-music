@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-03-27T01:30:12.828Z
+__export_date: 2020-04-07T03:48:21.394Z
 __export_source: insomnia.desktop.app:v7.1.1
 resources:
   - _id: req_6e5c53c7b2114cb885d7381a61f7840d
@@ -31,22 +31,22 @@ resources:
     name: Think Music API
     parentId: null
     _type: workspace
-  - _id: req_07e4d0cd65e64445ace9a1273cdaee7d
+  - _id: req_7f3b65885d0e4f6e942bd9080a747ee0
     authentication: {}
     body: {}
-    created: 1582837029941
+    created: 1582832691092
     description: ""
     headers:
       - description: ""
-        id: pair_43e7a24cc65c4225a9385372046367e0
+        id: pair_517ef07d44414621b6cbef13fe53d3a3
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
-    metaSortKey: -1582837029941
-    method: DELETE
-    modified: 1585268254968
-    name: Remove a user
+    metaSortKey: -1582837029991
+    method: GET
+    modified: 1585378426940
+    name: Show user
     parameters: []
     parentId: fld_5a79b9b96f1442d6a5b97ffeaff72e20
     settingDisableRenderRequestBody: false
@@ -56,7 +56,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/453fae18-7855-4ce3-baac-296675a7e7e2"
+      resource  }}/183acf7f-34f3-451a-966a-9ad675045963"
     _type: request
   - _id: fld_5a79b9b96f1442d6a5b97ffeaff72e20
     created: 1582831136434
@@ -71,69 +71,6 @@ resources:
     name: Users
     parentId: wrk_3f137634b46a448c86afd3b77a6b8725
     _type: request_group
-  - _id: req_8c1b12c1ceed40488d288c02e8a7d09c
-    authentication: {}
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"name": "Thalyson Alexandre Rodrigues",
-        	"email": "thalyson@gmail.com"
-        }
-    created: 1582836461521
-    description: ""
-    headers:
-      - description: ""
-        id: pair_b2e33a32a6274e16ad221562a01a5c7c
-        name: Authorization
-        value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
-      - id: pair_32e55b50b8db4872ba14622002ded63d
-        name: Content-Type
-        value: application/json
-    isPrivate: false
-    metaSortKey: -1582836461521
-    method: PUT
-    modified: 1585268217428
-    name: Update a user
-    parameters: []
-    parentId: fld_5a79b9b96f1442d6a5b97ffeaff72e20
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingFollowRedirects: global
-    settingRebuildPath: true
-    settingSendCookies: true
-    settingStoreCookies: true
-    url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/d23bd6a7-61da-4330-a1fc-9541ef68a379"
-    _type: request
-  - _id: req_7f3b65885d0e4f6e942bd9080a747ee0
-    authentication: {}
-    body: {}
-    created: 1582832691092
-    description: ""
-    headers:
-      - description: ""
-        id: pair_517ef07d44414621b6cbef13fe53d3a3
-        name: Authorization
-        value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
-    isPrivate: false
-    metaSortKey: -1582832691092
-    method: GET
-    modified: 1585268136807
-    name: Show user
-    parameters: []
-    parentId: fld_5a79b9b96f1442d6a5b97ffeaff72e20
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingFollowRedirects: global
-    settingRebuildPath: true
-    settingSendCookies: true
-    settingStoreCookies: true
-    url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/d23bd6a7-61da-4330-a1fc-9541ef68a379"
-    _type: request
   - _id: req_dc4eb0d143c74de8a3ac75c1e357af42
     authentication: {}
     body: {}
@@ -144,11 +81,11 @@ resources:
         id: pair_3a45b67f54b04d959e3a8a1abd234aa5
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZGJjODkwLTI5NmQtNDVjNC1iZTFiLTI3MDE4Yjc2YWZhZiIsImlhdCI6MTU4NTcxMzg4MiwiZXhwIjoxNTg1ODAwMjgyfQ.jFx5c1dQSlbGdvWuKHuMWRPCpxSsyprw4J0-Ttllu2c
     isPrivate: false
-    metaSortKey: -1582831148116
+    metaSortKey: -1582837029966
     method: GET
-    modified: 1585268091011
+    modified: 1585778833585
     name: List all users
     parameters: []
     parentId: fld_5a79b9b96f1442d6a5b97ffeaff72e20
@@ -160,20 +97,84 @@ resources:
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{ resource  }}?orderBy=id"
     _type: request
+  - _id: req_8c1b12c1ceed40488d288c02e8a7d09c
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Mateus Castro",
+        	"email": "mateus@gmail.com"
+        }
+    created: 1582836461521
+    description: ""
+    headers:
+      - description: ""
+        id: pair_b2e33a32a6274e16ad221562a01a5c7c
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
+      - id: pair_32e55b50b8db4872ba14622002ded63d
+        name: Content-Type
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1582836461521
+    method: PUT
+    modified: 1585872572669
+    name: Update a user
+    parameters: []
+    parentId: fld_5a79b9b96f1442d6a5b97ffeaff72e20
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingFollowRedirects: global
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ url  }}/{{ version  }}/{{
+      resource  }}/183acf7f-34f3-451a-966a-9ad675045963"
+    _type: request
+  - _id: req_07e4d0cd65e64445ace9a1273cdaee7d
+    authentication: {}
+    body: {}
+    created: 1582837029941
+    description: ""
+    headers:
+      - description: ""
+        id: pair_43e7a24cc65c4225a9385372046367e0
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZmMGMyZjdhLTgxY2QtNDEzYS04YTAwLTI5Nzk3NGIzYTMxZSIsImlhdCI6MTU4NTcxMzI5NSwiZXhwIjoxNTg1Nzk5Njk1fQ.ARmPdSph2f4rCZmdobVzGeE5RAagN8CuGfjiKSotTYU
+    isPrivate: false
+    metaSortKey: -1582836461471
+    method: DELETE
+    modified: 1585713932116
+    name: Remove a user
+    parameters: []
+    parentId: fld_5a79b9b96f1442d6a5b97ffeaff72e20
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingFollowRedirects: global
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ url  }}/{{ version  }}/{{
+      resource  }}/6f0c2f7a-81cd-413a-8a00-297974b3a31e"
+    _type: request
   - _id: req_f0e729c167da473fbceec7b5b21b0ff4
     authentication: {}
     body:
       mimeType: application/json
       text: |
         {
-        	"name": "Rafael Silva",
-        	"email": "rafael@gmail.com",
+        	"name": "Thalyson Rodrigues",
+        	"email": "thalyson@gmail.com",
         	"password": "12345"
         }
     created: 1581730398947
     description: ""
     headers:
-      - id: pair_1bb5febc98854b85bd400900db8ca8f4
+      - disabled: false
+        id: pair_1bb5febc98854b85bd400900db8ca8f4
         name: Content-Type
         value: application/json
       - description: ""
@@ -183,7 +184,7 @@ resources:
     isPrivate: false
     metaSortKey: -1581730424292
     method: POST
-    modified: 1585269102376
+    modified: 1586122714636
     name: Create a new user
     parameters: []
     parentId: fld_75b9bb625dee4a8c987882813d9092ef
@@ -214,19 +215,20 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"email": "thalyson@gmail.com",
-        	"password": "12344"
+        	"email": "rayeli@gmail.com",
+        	"password": "12345"
         }
     created: 1581736831091
     description: ""
     headers:
-      - id: pair_3849f475406542ddbd0cda71c2e62e9d
+      - disabled: false
+        id: pair_3849f475406542ddbd0cda71c2e62e9d
         name: Content-Type
         value: application/json
     isPrivate: false
     metaSortKey: -1581730424242
     method: POST
-    modified: 1585268066369
+    modified: 1586122527590
     name: Authenticate user
     parameters: []
     parentId: fld_75b9bb625dee4a8c987882813d9092ef
@@ -255,7 +257,7 @@ resources:
     isPrivate: false
     metaSortKey: -1581730424192
     method: POST
-    modified: 1584484764839
+    modified: 1585695988571
     name: Forgot password
     parameters: []
     parentId: fld_75b9bb625dee4a8c987882813d9092ef
@@ -274,7 +276,7 @@ resources:
       text: |-
         {
         	"email": "thalyson@gmail.com",
-        	"token": "a82491ecf0e72bbd6f0ccfdd55dd9ecebb419eb7",
+        	"token": "dfae2ba0498347f827c212258e46547676a04a70",
         	"password": "12344"
         }
     created: 1581745643702
@@ -286,7 +288,7 @@ resources:
     isPrivate: false
     metaSortKey: -1581428084105.5
     method: POST
-    modified: 1585268054913
+    modified: 1585696069015
     name: Reset password
     parameters: []
     parentId: fld_75b9bb625dee4a8c987882813d9092ef
@@ -302,10 +304,10 @@ resources:
     authentication: {}
     body:
       mimeType: application/json
-      text: >-
+      text: |-
         {
-        	"title": "Rock Nacional",
-        	"description": "Estilo músical brasileiro de Rock mais inspirado ao MPB e outros."
+        	"title": "Samba",
+        	"description": "no description."
         }
     created: 1584071841432
     description: ""
@@ -317,11 +319,11 @@ resources:
         id: pair_8979af1012014b338fbd90e918d368b3
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkNDUwMmQxLTMwZDYtNDdiMy05MTM0LWFkZTVlNDAzYjBlNCIsImlhdCI6MTU4NjA5OTYzNSwiZXhwIjoxNTg2MTg2MDM1fQ.3_gsf_8mKc1Z2Eg1vwpINEvrUxt05GlgmuPEKH727aM
     isPrivate: false
     metaSortKey: -1584075828402
     method: POST
-    modified: 1585268315745
+    modified: 1586099685013
     name: Create a new category
     parameters: []
     parentId: fld_a30192718e464d84893fb45faba282f6
@@ -367,8 +369,8 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"title": "Rock Nacional",
-        	"description": "Rock"
+        	"title": "Samba e Pagode",
+        	"description": "no description"
         }
     created: 1584075828352
     description: ""
@@ -380,11 +382,11 @@ resources:
         id: pair_c6f95fbcfe364f55b29df73cf4e928b8
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584075828352
     method: PUT
-    modified: 1585268350571
+    modified: 1585379196245
     name: Update a category
     parameters: []
     parentId: fld_a30192718e464d84893fb45faba282f6
@@ -395,7 +397,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{ parent  }}/{{
-      resource  }}/e956694b-eb77-4b83-ba03-79536b7737aa"
+      resource  }}/4176de38-2c38-4b4a-bf06-2ecf9ab0375d"
     _type: request
   - _id: req_d3b32a883bc44f369f1c87d07af1b719
     authentication: {}
@@ -404,14 +406,15 @@ resources:
     description: ""
     headers:
       - description: ""
+        disabled: false
         id: pair_0dfd3b503a1f4fa3b6d1a1cfabc86b54
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZGJjODkwLTI5NmQtNDVjNC1iZTFiLTI3MDE4Yjc2YWZhZiIsImlhdCI6MTU4NTg3ODE4MiwiZXhwIjoxNTg1OTY0NTgyfQ.tC9Izdn2DUqCRC8ddLy0tzR-FHqeyMerba2_9HyzUwI
     isPrivate: false
     metaSortKey: -1584071841382
     method: DELETE
-    modified: 1585268357939
+    modified: 1585878301673
     name: Remove category
     parameters: []
     parentId: fld_a30192718e464d84893fb45faba282f6
@@ -422,7 +425,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{ parent  }}/{{
-      resource  }}/e956694b-eb77-4b83-ba03-79536b7737aa"
+      resource  }}/992b0975-1cac-40af-8c28-63076acc0ace"
     _type: request
   - _id: req_508b0236f98b4e4faae2db932a8bdccc
     authentication: {}
@@ -435,7 +438,9 @@ resources:
         	"description": "Música do compositor Humberto Gessinger do albúm A revolta dos Dandis",
         	"letter": "Você me faz correr demais Os riscos desta highway Você me faz correr atrás Do horizonte desta highway Ninguém por perto, silêncio no deserto Deserta highway Estamos sós e nenhum de nós Sabe exatamente onde vai parar Mas não precisamos saber pra onde vamos Nós só precisamos ir Não queremos ter o que não temos Nós só queremos viver Sem motivos, nem objetivos Estamos vivos e isto é tudo É sobretudo a lei Dessa infinita highway Quando eu vivia e morria na cidade Eu não tinha nada, nada a temer  Mas eu tinha medo, medo dessa estrada Olhe só! Veja você Quando eu vivia e morria na cidade Eu tinha de tudo, tudo ao meu redo Mas tudo que eu sentia era que algo me faltava E à noite, eu acordava banhado em suor Não queremos lembrar o que esquecemos Nós só queremos viver Não queremos aprender o que sabemos Não queremos nem saber Sem motivos, nem objetivos Estamos vivos e é só Só obedecemos a lei Da infinita highway (Highway) Oh highway Escute garota, o vento canta uma canção Dessas que a gente nunca canta sem razã Me diga, garota, será a estrada uma prisão? Eu acho que sim, você finge que não Mas nem por isso ficaremos parados Com a cabeça nas nuvens e os pés no chão Tudo bem, garota, não adianta mesmo ser livre Se tanta gente vive sem ter como vive Estamos sós e nenhum de nós Sabe onde quer chegar Estamos vivos sem motivos Que motivos temos pra estar? Atrás de palavras escondidas Nas entrelinhas do horizonte dessa highway Silenciosa highway (Highway) Eu vejo um horizonte trêmulo Eu tenho os olhos úmidos Eu posso estar completamente enganado Eu posso estar correndo pro lado errado Mas a dúvida é o preço da pureza E é inútil ter certeza Eu vejo as placas dizendo Não corra, não morra, não fume Eu vejo as placas cortando o horizonte Elas parecem facas de dois gumes Minha vida é tão confusa quanto a América Central Por isso não me acuse de ser irracional Escute garota, façamos um trato Você desliga o telefone se eu ficar muito abstrato Eu posso ser um Beatle, um beatnik Ou um bitolado Mas eu não sou ator Eu não tô à toa do teu lado Por isso, garota, façamos um pacto De não usar a highway pra causar impacto Cento e dez Cento e vinte Cento e sessenta Só pra ver até quando O motor aguenta Na boca, em vez de um beijo Um chiclet de menta E a sombra do sorriso que eu deixei Numa das curvas da highway Highway Infinita highway Highway Infinita highway Oh oh highway Highway Oh oh highway",
         	"author": "Humberto Gessinger",
-        	"category": "Rock Nacional"
+        	"category": {
+        		"title": "Rock Nacional"
+        	}
         }
     created: 1584071691209
     description: ""
@@ -447,11 +452,11 @@ resources:
         id: pair_3c7ef3a4f0ce45749da11ff9e56aa10d
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkNDUwMmQxLTMwZDYtNDdiMy05MTM0LWFkZTVlNDAzYjBlNCIsImlhdCI6MTU4NjEyMjUyOSwiZXhwIjoxNTg2MjA4OTI5fQ.9Tx_E3QfrxjSj1FTZmbfjcWbTG9WfgU5s_Uck4R-Mh4
     isPrivate: false
     metaSortKey: -1584071691209
     method: POST
-    modified: 1585268409910
+    modified: 1586122559163
     name: Create a new music
     parameters: []
     parentId: fld_bed1656150444cb0b623819621c7503f
@@ -489,7 +494,9 @@ resources:
         	"description": "Música do compositor Humberto Gessinger do albúm A revolta dos Dandis",
         	"letter": "Você me faz correr demais Os riscos desta highway Você me faz correr atrás Do horizonte desta highway Ninguém por perto, silêncio no deserto Deserta highway Estamos sós e nenhum de nós Sabe exatamente onde vai parar Mas não precisamos saber pra onde vamos Nós só precisamos ir Não queremos ter o que não temos Nós só queremos viver Sem motivos, nem objetivos Estamos vivos e isto é tudo É sobretudo a lei Dessa infinita highway Quando eu vivia e morria na cidade Eu não tinha nada, nada a temer  Mas eu tinha medo, medo dessa estrada Olhe só! Veja você Quando eu vivia e morria na cidade Eu tinha de tudo, tudo ao meu redo Mas tudo que eu sentia era que algo me faltava E à noite, eu acordava banhado em suor Não queremos lembrar o que esquecemos Nós só queremos viver Não queremos aprender o que sabemos Não queremos nem saber Sem motivos, nem objetivos Estamos vivos e é só Só obedecemos a lei Da infinita highway (Highway) Oh highway Escute garota, o vento canta uma canção Dessas que a gente nunca canta sem razã Me diga, garota, será a estrada uma prisão? Eu acho que sim, você finge que não Mas nem por isso ficaremos parados Com a cabeça nas nuvens e os pés no chão Tudo bem, garota, não adianta mesmo ser livre Se tanta gente vive sem ter como vive Estamos sós e nenhum de nós Sabe onde quer chegar Estamos vivos sem motivos Que motivos temos pra estar? Atrás de palavras escondidas Nas entrelinhas do horizonte dessa highway Silenciosa highway (Highway) Eu vejo um horizonte trêmulo Eu tenho os olhos úmidos Eu posso estar completamente enganado Eu posso estar correndo pro lado errado Mas a dúvida é o preço da pureza E é inútil ter certeza Eu vejo as placas dizendo Não corra, não morra, não fume Eu vejo as placas cortando o horizonte Elas parecem facas de dois gumes Minha vida é tão confusa quanto a América Central Por isso não me acuse de ser irracional Escute garota, façamos um trato Você desliga o telefone se eu ficar muito abstrato Eu posso ser um Beatle, um beatnik Ou um bitolado Mas eu não sou ator Eu não tô à toa do teu lado Por isso, garota, façamos um pacto De não usar a highway pra causar impacto Cento e dez Cento e vinte Cento e sessenta Só pra ver até quando O motor aguenta Na boca, em vez de um beijo Um chiclet de menta E a sombra do sorriso que eu deixei Numa das curvas da highway Highway Infinita highway Highway Infinita highway Oh oh highway Highway Oh oh highway",
         	"author": "Humberto Gessinger",
-        	"category": "Rock Nacional"
+        	"category": {
+        		"title": "Rock Nacional"
+        	}
         }
     created: 1584076228971
     description: ""
@@ -501,11 +508,11 @@ resources:
         id: pair_3c7ef3a4f0ce45749da11ff9e56aa10d
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1583460047057.5
     method: PUT
-    modified: 1585268452668
+    modified: 1585419706250
     name: Update a music
     parameters: []
     parentId: fld_bed1656150444cb0b623819621c7503f
@@ -516,7 +523,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{ parent  }}/{{
-      resource  }}/8e84549d-b3dd-4770-b6d6-ad8eebd3762d"
+      resource  }}/cd22287c-3496-4d6a-9c5f-204805c7ffc7"
     _type: request
   - _id: req_59682f1faa534067b7b9024f815ff333
     authentication: {}
@@ -528,11 +535,11 @@ resources:
         id: pair_6f9033a6ba6c40e49a81f4dd70b2c19f
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1583460047007.5
     method: DELETE
-    modified: 1585268460053
+    modified: 1585379148641
     name: Remove music
     parameters: []
     parentId: fld_bed1656150444cb0b623819621c7503f
@@ -543,7 +550,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{ parent  }}/{{
-      resource  }}/8e84549d-b3dd-4770-b6d6-ad8eebd3762d"
+      resource  }}/cd22287c-3496-4d6a-9c5f-204805c7ffc7"
     _type: request
   - _id: req_8647a918298943a29b9a68b9cde848b0
     authentication: {}
@@ -552,14 +559,15 @@ resources:
     description: ""
     headers:
       - description: ""
+        disabled: false
         id: pair_bafb66ccbf284728aa81591d5d31294d
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZGJjODkwLTI5NmQtNDVjNC1iZTFiLTI3MDE4Yjc2YWZhZiIsImlhdCI6MTU4NTcxMzIxMywiZXhwIjoxNTg1Nzk5NjEzfQ.4S6iMpAKyi-avrQCHkmsAxOT_D6hxpC1FM9lQHJMBR0
     isPrivate: false
     metaSortKey: -1582848402906
     method: POST
-    modified: 1585268513805
+    modified: 1585755417313
     name: Disable user
     parameters: []
     parentId: fld_f181c3a88fd447e28b1264f2967c88c7
@@ -570,7 +578,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/8231fe85-416c-450b-ab76-da2bedef52a9/enable?status=false"
+      resource  }}/5ba44fee-1f14-4902-98b8-6f3f973d35f6/enable?status=true"
     _type: request
   - _id: req_4ba5c3a9447a445dbf2faa0a4dcf9077
     authentication: {}
@@ -580,7 +588,7 @@ resources:
         {
         	"name": "Rayeli Nascimento da Mata",
         	"password": "12345",
-        	"email": "rayeli@gmail.com"
+        	"email": "rayeli2@gmail.com"
         }
     created: 1582847009948
     description: ""
@@ -592,11 +600,11 @@ resources:
         id: pair_a995dbe5abd4475abb765676fa02aa8b
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyM2JkNmE3LTYxZGEtNDMzMC1hMWZjLTk1NDFlZjY4YTM3OSIsImlhdCI6MTU4NTI2ODA2NywiZXhwIjoxNTg1MzU0NDY3fQ.Lg4U7CwB_pkYcFHk8aAwjhtFmZcXitEGxmdsav08cqs
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1582847009948
     method: POST
-    modified: 1585268570899
+    modified: 1585378653307
     name: Create admin
     parameters: []
     parentId: fld_f181c3a88fd447e28b1264f2967c88c7
@@ -608,32 +616,6 @@ resources:
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{ resource  }}"
     _type: request
-  - _id: req_ad09699973984db087fa88cacc0a9deb
-    authentication: {}
-    body: {}
-    created: 1584078596737
-    description: ""
-    headers:
-      - description: ""
-        id: pair_e69c6c1fc0be4f6887cff913759084f9
-        name: Authorization
-        value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
-    isPrivate: false
-    metaSortKey: -1582847009898
-    method: GET
-    modified: 1585268587618
-    name: Show access logs
-    parameters: []
-    parentId: fld_f181c3a88fd447e28b1264f2967c88c7
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingFollowRedirects: global
-    settingRebuildPath: true
-    settingSendCookies: true
-    settingStoreCookies: true
-    url: "{{ url  }}/{{ version  }}/{{ resource  }}/logs"
-    _type: request
   - _id: req_8d1bd019f8d3457f813cae5df5c4eb85
     authentication: {}
     body: {}
@@ -644,11 +626,11 @@ resources:
         id: pair_dc8bacdeb38f439aa4fd44a6812dfb2a
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584077431965
     method: GET
-    modified: 1585268630113
+    modified: 1585379342087
     name: Show music
     parameters: []
     parentId: fld_ec9b062777e548119fe065e492225020
@@ -659,7 +641,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/aaec5aec-c111-42a1-9399-7cc50865e92b"
+      resource  }}/355c7e16-18ad-432b-bbf9-48a36bd53618"
     _type: request
   - _id: fld_ec9b062777e548119fe065e492225020
     created: 1584077269934
@@ -681,14 +663,15 @@ resources:
     description: ""
     headers:
       - description: ""
+        disabled: false
         id: pair_52d729b58cea4d0a82e011f518cd70b4
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZGJjODkwLTI5NmQtNDVjNC1iZTFiLTI3MDE4Yjc2YWZhZiIsImlhdCI6MTU4NTg3ODE4MiwiZXhwIjoxNTg1OTY0NTgyfQ.tC9Izdn2DUqCRC8ddLy0tzR-FHqeyMerba2_9HyzUwI
     isPrivate: false
     metaSortKey: -1584077431915
     method: GET
-    modified: 1585268617095
+    modified: 1585926764064
     name: List all musics
     parameters: []
     parentId: fld_ec9b062777e548119fe065e492225020
@@ -710,11 +693,11 @@ resources:
         id: pair_7523ebaec4784fb7b6853d3ba9873f73
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584077963923
     method: GET
-    modified: 1585268675735
+    modified: 1585379361858
     name: Show category
     parameters: []
     parentId: fld_393f5426f71d4a96ba4bd58e92c516aa
@@ -725,7 +708,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/af5a2480-274e-4e0f-8a4a-8079e32a2be8"
+      resource  }}/b6272573-39bf-4f8a-a065-eea81d1ffc6d"
     _type: request
   - _id: fld_393f5426f71d4a96ba4bd58e92c516aa
     created: 1584077256218
@@ -747,14 +730,15 @@ resources:
     description: ""
     headers:
       - description: ""
+        disabled: false
         id: pair_8c37549c898442cdad233929cbe28ee9
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZGJjODkwLTI5NmQtNDVjNC1iZTFiLTI3MDE4Yjc2YWZhZiIsImlhdCI6MTU4NTg3ODE4MiwiZXhwIjoxNTg1OTY0NTgyfQ.tC9Izdn2DUqCRC8ddLy0tzR-FHqeyMerba2_9HyzUwI
     isPrivate: false
     metaSortKey: -1584077963873
     method: GET
-    modified: 1585268649435
+    modified: 1585878257861
     name: List all categories
     parameters: []
     parentId: fld_393f5426f71d4a96ba4bd58e92c516aa
@@ -773,14 +757,15 @@ resources:
     description: ""
     headers:
       - description: ""
+        disabled: false
         id: pair_eef726379d7540fea465fcdf755dc406
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkNDUwMmQxLTMwZDYtNDdiMy05MTM0LWFkZTVlNDAzYjBlNCIsImlhdCI6MTU4NjEyMjUyOSwiZXhwIjoxNTg2MjA4OTI5fQ.9Tx_E3QfrxjSj1FTZmbfjcWbTG9WfgU5s_Uck4R-Mh4
     isPrivate: false
     metaSortKey: -1584414881626
     method: POST
-    modified: 1585269505828
+    modified: 1586126310961
     name: Create like
     parameters: []
     parentId: fld_4712b7113eab4e008ca8175808133ae1
@@ -791,8 +776,8 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{
-      resource  }}?action=dislike"
+      parent  }}/618fdca2-aa6b-49ee-8916-fe5e8c36fa06/{{
+      resource  }}?action=like"
     _type: request
   - _id: fld_4712b7113eab4e008ca8175808133ae1
     created: 1584414858921
@@ -832,11 +817,11 @@ resources:
         id: pair_eef726379d7540fea465fcdf755dc406
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkNDUwMmQxLTMwZDYtNDdiMy05MTM0LWFkZTVlNDAzYjBlNCIsImlhdCI6MTU4NjEyMjUyOSwiZXhwIjoxNTg2MjA4OTI5fQ.9Tx_E3QfrxjSj1FTZmbfjcWbTG9WfgU5s_Uck4R-Mh4
     isPrivate: false
     metaSortKey: -1584413272564
     method: DELETE
-    modified: 1585269431021
+    modified: 1586141917023
     name: Destroy a like
     parameters: []
     parentId: fld_4712b7113eab4e008ca8175808133ae1
@@ -847,7 +832,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{ resource  }}"
+      parent  }}/618fdca2-aa6b-49ee-8916-fe5e8c36fa06/{{ resource  }}"
     _type: request
   - _id: req_b8796df52c264ee0bc6619363a4e1d43
     authentication: {}
@@ -859,11 +844,11 @@ resources:
         id: pair_eef726379d7540fea465fcdf755dc406
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkNDUwMmQxLTMwZDYtNDdiMy05MTM0LWFkZTVlNDAzYjBlNCIsImlhdCI6MTU4NjEyMjUyOSwiZXhwIjoxNTg2MjA4OTI5fQ.9Tx_E3QfrxjSj1FTZmbfjcWbTG9WfgU5s_Uck4R-Mh4
     isPrivate: false
     metaSortKey: -1584412468033
     method: GET
-    modified: 1585269492576
+    modified: 1586143998037
     name: Count a likes
     parameters: []
     parentId: fld_4712b7113eab4e008ca8175808133ae1
@@ -874,7 +859,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{ resource  }}/count"
+      parent  }}/618fdca2-aa6b-49ee-8916-fe5e8c36fa06/{{ resource  }}/count"
     _type: request
   - _id: req_a6ce8f92c7d24f22b4774ce11928c6ce
     authentication: {}
@@ -886,11 +871,11 @@ resources:
         id: pair_eef726379d7540fea465fcdf755dc406
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkNDUwMmQxLTMwZDYtNDdiMy05MTM0LWFkZTVlNDAzYjBlNCIsImlhdCI6MTU4NjEyMjUyOSwiZXhwIjoxNTg2MjA4OTI5fQ.9Tx_E3QfrxjSj1FTZmbfjcWbTG9WfgU5s_Uck4R-Mh4
     isPrivate: false
     metaSortKey: -1584412065767.5
     method: GET
-    modified: 1585269402936
+    modified: 1586143975803
     name: List likes by interpretation
     parameters: []
     parentId: fld_4712b7113eab4e008ca8175808133ae1
@@ -901,7 +886,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{ resource  }}"
+      parent  }}/618fdca2-aa6b-49ee-8916-fe5e8c36fa06/{{ resource  }}"
     _type: request
   - _id: req_06212bd87db84784aab3e640279210da
     authentication: {}
@@ -918,14 +903,14 @@ resources:
         id: pair_d505bc8d546643578d69ce8d1b1a707f
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
       - id: pair_152dcbd258d540c18a5574537c2045b3
         name: Content-Type
         value: application/json
     isPrivate: false
     metaSortKey: -1584411663502
     method: POST
-    modified: 1585268953841
+    modified: 1585418231450
     name: Create new comment
     parameters: []
     parentId: fld_54f545fe471c48d9b2470a696af3cc0f
@@ -936,7 +921,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{ resource  }}"
+      parent  }}/91866220-e125-429a-b7a9-6b8c758f3fe4/{{ resource  }}"
     _type: request
   - _id: fld_54f545fe471c48d9b2470a696af3cc0f
     created: 1584411648003
@@ -963,15 +948,11 @@ resources:
         id: pair_c6fe867112594f87bc851ecff69c133f
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
-      - description: ""
-        id: pair_346cab2db5e2460792edfe95dc2bc058
-        name: ""
-        value: ""
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584411663452
     method: GET
-    modified: 1585269044785
+    modified: 1585418054929
     name: Show comment
     parameters: []
     parentId: fld_54f545fe471c48d9b2470a696af3cc0f
@@ -982,8 +963,8 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{
-      resource  }}/ee1d6b1f-dd3f-492d-8a48-79661c15671c"
+      parent  }}/91866220-e125-429a-b7a9-6b8c758f3fe4/{{
+      resource  }}/763cc196-4f0f-487c-b7c2-d2cc4182143a"
     _type: request
   - _id: req_c35a050747a64c12a6426ce0deaa352c
     authentication: {}
@@ -992,14 +973,15 @@ resources:
     description: ""
     headers:
       - description: ""
+        disabled: false
         id: pair_929d743df445435796ad5446f9a5e88b
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1ZTRkOGQyLTE4ZjctNDBiZS05NGZhLTNhNTM4YmY1YmNhMyIsImlhdCI6MTU4NTI2OTEwNCwiZXhwIjoxNTg1MzU1NTA0fQ.j7w868nqpiRR4LtBFRIet7snhTSjvYcJl5AzGBS98ts
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584411663402
     method: GET
-    modified: 1585269119210
+    modified: 1585417967682
     name: List all comments
     parameters: []
     parentId: fld_54f545fe471c48d9b2470a696af3cc0f
@@ -1010,7 +992,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{ resource  }}"
+      parent  }}/91866220-e125-429a-b7a9-6b8c758f3fe4/{{ resource  }}"
     _type: request
   - _id: req_138b106f27e94ed290eea6955aa723ba
     authentication: {}
@@ -1030,11 +1012,11 @@ resources:
         id: pair_faac9998cf7d49fa8aa45927dd189241
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584411663377
     method: PUT
-    modified: 1585269280616
+    modified: 1585379602274
     name: Update comment
     parameters: []
     parentId: fld_54f545fe471c48d9b2470a696af3cc0f
@@ -1045,8 +1027,8 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{
-      resource  }}/55455524-66a6-42f3-9b1c-b0cd581a28e2"
+      parent  }}/91866220-e125-429a-b7a9-6b8c758f3fe4/{{
+      resource  }}/017ad43e-a5ab-43d5-bc00-8fba733226fc"
     _type: request
   - _id: req_2747d399bfa84dd1900cac727c3daa23
     authentication: {}
@@ -1058,11 +1040,11 @@ resources:
         id: pair_3ced7b5222034b6888b73b16934366c5
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584411663352
     method: DELETE
-    modified: 1585269311521
+    modified: 1585379711975
     name: Destroy a comment
     parameters: []
     parentId: fld_54f545fe471c48d9b2470a696af3cc0f
@@ -1073,8 +1055,8 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      parent  }}/2f270a6f-4aea-4233-92aa-3731d0f7e017/{{
-      resource  }}/55455524-66a6-42f3-9b1c-b0cd581a28e2"
+      parent  }}/91866220-e125-429a-b7a9-6b8c758f3fe4/{{
+      resource  }}/017ad43e-a5ab-43d5-bc00-8fba733226fc"
     _type: request
   - _id: req_4dffc2699715407da37e98022efebb00
     authentication: {}
@@ -1083,7 +1065,7 @@ resources:
       text: >-
         {
         	"interpretation": "Reconheço esta musica como parte da nostagia da infancia...",
-        	"music": "aaec5aec-c111-42a1-9399-7cc50865e92b"
+        	"music": "d81db08f-c5ff-4b53-b671-cf78e736d7bf"
         }
     created: 1584127125048
     description: ""
@@ -1091,7 +1073,7 @@ resources:
       - id: pair_27fbb1c7310a4bd3b40bda45241e3ec8
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkNDUwMmQxLTMwZDYtNDdiMy05MTM0LWFkZTVlNDAzYjBlNCIsImlhdCI6MTU4NjEyMjUyOSwiZXhwIjoxNTg2MjA4OTI5fQ.9Tx_E3QfrxjSj1FTZmbfjcWbTG9WfgU5s_Uck4R-Mh4
       - description: ""
         id: pair_eb187fcede624a7a95cbdd2c9e37d6b2
         name: Content-Type
@@ -1099,7 +1081,7 @@ resources:
     isPrivate: false
     metaSortKey: -1584127125048
     method: POST
-    modified: 1585268803190
+    modified: 1586122608973
     name: Create new interpretation
     parameters: []
     parentId: fld_37ad787bfa534019b300f70ced5e4a5d
@@ -1121,11 +1103,11 @@ resources:
         id: pair_c73c9feb87ec41358a905eb99b24b126
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584127124998
     method: GET
-    modified: 1585268819793
+    modified: 1585379433586
     name: Show a interpretation
     parameters: []
     parentId: fld_37ad787bfa534019b300f70ced5e4a5d
@@ -1136,7 +1118,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/94c2e584-62f7-4ac3-8cb7-48463caef513"
+      resource  }}/1662b2be-dc93-4655-a66c-c8c370b4ded3"
     _type: request
   - _id: req_c371961e62b84b4bb8248a3a3e48a72d
     authentication: {}
@@ -1148,11 +1130,11 @@ resources:
         id: pair_27e20f3108d243c592615283763fd241
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584127124948
     method: GET
-    modified: 1585268773502
+    modified: 1585379389885
     name: List all interpretations
     parameters: []
     parentId: fld_37ad787bfa534019b300f70ced5e4a5d
@@ -1168,10 +1150,10 @@ resources:
     authentication: {}
     body:
       mimeType: application/json
-      text: |-
+      text: >-
         {
-        	"interpretation": "Uma nova historia de amor...",
-        	"music": "aaec5aec-c111-42a1-9399-7cc50865e92b"
+        	"interpretation": "Uma nova historia de amor... uma interpretação de verdade deve conter mais de 45 caracteres",
+        	"music": "d81db08f-c5ff-4b53-b671-cf78e736d7bf"
         }
     created: 1584208307827
     description: ""
@@ -1183,11 +1165,11 @@ resources:
         id: pair_6ae10285167e476b9e1216a75a277bc2
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkNDUwMmQxLTMwZDYtNDdiMy05MTM0LWFkZTVlNDAzYjBlNCIsImlhdCI6MTU4NjEyMjUyOSwiZXhwIjoxNTg2MjA4OTI5fQ.9Tx_E3QfrxjSj1FTZmbfjcWbTG9WfgU5s_Uck4R-Mh4
     isPrivate: false
     metaSortKey: -1584127124923
     method: PUT
-    modified: 1585268855011
+    modified: 1586122807540
     name: Update interpretation
     parameters: []
     parentId: fld_37ad787bfa534019b300f70ced5e4a5d
@@ -1198,7 +1180,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/94c2e584-62f7-4ac3-8cb7-48463caef513"
+      resource  }}/618fdca2-aa6b-49ee-8916-fe5e8c36fa06"
     _type: request
   - _id: req_e4da21b3de134df8ab9a404f27708384
     authentication: {}
@@ -1210,11 +1192,11 @@ resources:
         id: pair_88c44011b3144a9081ef47d10e09053f
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2YTgyYjQ0LTkxN2YtNGU5NC1hYTIzLTRjMmQzYThjYzI2YiIsImlhdCI6MTU4NTI2ODU3NSwiZXhwIjoxNTg1MzU0OTc1fQ.MP9vqzrxG4dO_VteQ1InZ5FkRKrGrtzU1LtXyGlkIPY
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5NjM5NGVkLTBiNGMtNDExNi05Yjg1LWVmZTM1ZTcyYmIwOCIsImlhdCI6MTU4NTM3ODM2NSwiZXhwIjoxNTg1NDY0NzY1fQ.5Dq5VgN8TGz1vpQ0afe2OWmfrDO9aM44TpGNCMqC2E0
     isPrivate: false
     metaSortKey: -1584127124898
     method: DELETE
-    modified: 1585268875897
+    modified: 1585379474601
     name: Destroy interpretation
     parameters: []
     parentId: fld_37ad787bfa534019b300f70ced5e4a5d
@@ -1225,7 +1207,7 @@ resources:
     settingSendCookies: true
     settingStoreCookies: true
     url: "{{ url  }}/{{ version  }}/{{
-      resource  }}/94c2e584-62f7-4ac3-8cb7-48463caef513"
+      resource  }}/1662b2be-dc93-4655-a66c-c8c370b4ded3"
     _type: request
   - _id: env_bd889bf58af8f5957bff130869498fc3814b08af
     color: null

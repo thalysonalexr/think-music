@@ -1,4 +1,5 @@
-import { Op } from "sequelize";
+import { QueryTypes } from "sequelize";
+import sequelize from "../../../services/database";
 
 import User from "../../models/User";
 import Category from "../../models/Category";
@@ -17,17 +18,20 @@ export async function isAdmin(id) {
 }
 
 export async function findOrCreateCategory(category) {
-  const [model] = await Category.findOrCreate({
-    where: {
-      title: {
-        [Op.iLike]: `%${category}%`,
-      },
-    },
-    defaults: {
-      title: category,
-      description: "no description.",
-    },
-  });
+  const [model] = await sequelize.query(
+    "SELECT * FROM categories AS c WHERE UPPER(c.title) LIKE UPPER(:title)",
+    {
+      replacements: { title: `%${category}%` },
+      type: QueryTypes.SELECT,
+      model: Category,
+      mapToModel: true,
+    }
+  );
 
-  return model;
+  if (model) return model;
+
+  return await Category.create({
+    title: category,
+    description: "no description.",
+  });
 }
