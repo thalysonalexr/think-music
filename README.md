@@ -8,8 +8,8 @@
 > Simples API para integração de aplicações que desejarem aderir a esta ideia.
 
 <p align="center">
-  <a href="https://github.com/thalysonrodrigues/freestylesheets">
-    <img src="./docs/logo.jpg" alt="logo" title="Freestylesheets">
+  <a href="https://github.com/thalysonrodrigues/think-music">
+    <img src="./docs/logo.jpg" alt="logo" title="Think Music API">
   </a>
 </p>
 
